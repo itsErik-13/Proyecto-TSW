@@ -64,11 +64,11 @@ class UsersController extends BaseController {
 	* @return void
 	*/
 	public function login() {
-		if (isset($_POST["email"])){ // reaching via HTTP Post...
+		if (isset($_POST["username"])){ // reaching via HTTP Post...
 			//process login form
-			if ($this->userMapper->isValidUser($_POST["email"],$_POST["passwd"])) {
+			if ($this->userMapper->isValidUser($_POST["username"],$_POST["passwd"])) {
 
-				$_SESSION["currentuser"]=$_POST["email"];
+				$_SESSION["currentuser"]=$_POST["username"];
 				// send user to the restricted area (HTTP 302 code)
 				$this->view->redirect("proyectos", "index");
 
