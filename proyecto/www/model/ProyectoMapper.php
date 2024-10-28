@@ -157,15 +157,15 @@ class ProyectoMapper {
 		}
 
 		/**
-		* Deletes a Post into the database
+		* Deletes a Project into the database
 		*
-		* @param Post $post The post to be deleted
+		* @param Post $post The project to be deleted
 		* @throws PDOException if a database error occurs
 		* @return void
 		*/
-		public function delete(Post $post) {
-			$stmt = $this->db->prepare("DELETE from posts WHERE id=?");
-			$stmt->execute(array($post->getId()));
+		public function delete(Proyecto $project) {
+			$stmt = $this->db->prepare("DELETE from projects WHERE idProject=?");
+			$stmt->execute(array($project->getId()));
 		}
 
 	}

@@ -211,42 +211,37 @@ class ProyectosController extends BaseController
 	* @throws Exception if the author of the post to be deleted is not the current user
 	* @return void
 	*/
-	// public function delete() {
-	// 	if (!isset($_POST["id"])) {
-	// 		throw new Exception("id is mandatory");
-	// 	}
-	// 	if (!isset($this->currentUser)) {
-	// 		throw new Exception("Not in session. Editing proyects requires login");
-	// 	}
+	public function delete() {
+		if (!isset($_POST["id"])) {
+			throw new Exception("id is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing proyects requires login");
+		}
 		
-	// 	// Get the Proyect object from the database
-	// 	$proyectoid = $_REQUEST["id"];
-	// 	$proyecto = $this->proyectoMapper->findById($proyectoid);
+		// Get the Proyect object from the database
+		$proyectoid = $_REQUEST["id"];
+		$proyecto = $this->proyectoMapper->findById($proyectoid);
 
-	// 	// Does the post exist?
-	// 	if ($proyecto == NULL) {
-	// 		throw new Exception("no such proyect with id: ".$proyectoid);
-	// 	}
+		// Does the post exist?
+		if ($proyecto == NULL) {
+			throw new Exception("no such proyect with id: ".$proyectoid);
+		}
 
-	// 	// Check if the Proyect author is the currentUser (in Session)
-	// 	if ($proyecto->getAuthor() != $this->currentUser) {
-	// 		throw new Exception("Proyect author is not the logged user");
-	// 	}
+		// Delete the Post object from the database
+		$this->proyectoMapper->delete($proyecto);
 
-	// 	// Delete the Post object from the database
-	// 	$this->proyectoMapper->delete($proyecto);
+		// POST-REDIRECT-GET
+		// Everything OK, we will redirect the user to the list of posts
+		// We want to see a message after redirection, so we establish
+		// a "flash" message (which is simply a Session variable) to be
+		// get in the view after redirection.
+		$this->view->setFlash(sprintf(i18n("Proyecto \"%s\" successfully deleted."),$proyecto ->getName()));
 
-	// 	// POST-REDIRECT-GET
-	// 	// Everything OK, we will redirect the user to the list of posts
-	// 	// We want to see a message after redirection, so we establish
-	// 	// a "flash" message (which is simply a Session variable) to be
-	// 	// get in the view after redirection.
-	// 	$this->view->setFlash(sprintf(i18n("Proyecto \"%s\" successfully deleted."),$proyecto ->getTitle()));
+		// perform the redirection. More or less:
+		// header("Location: index.php?controller=posts&action=index")
+		// die();
+		$this->view->redirect("proyectos", "index");
 
-	// 	// perform the redirection. More or less:
-	// 	// header("Location: index.php?controller=posts&action=index")
-	// 	// die();
-	// 	$this->view->redirect("proyectos", "index");
-
-	// }
+	}
 }
