@@ -64,8 +64,11 @@ class UsersController extends BaseController {
 	* @return void
 	*/
 	public function login() {
+		$user = new User(); 
 		if (isset($_POST["username"])){ // reaching via HTTP Post...
-			//process login form
+			
+			$user->setUsername($_POST["username"]);
+			$user->setPassword($_POST["passwd"]);
 			if ($this->userMapper->isValidUser($_POST["username"],$_POST["passwd"])) {
 
 				$_SESSION["currentuser"]=$_POST["username"];
@@ -80,6 +83,7 @@ class UsersController extends BaseController {
 		}
 
 		// render the view (/view/users/login.php)
+		$this->view->setVariable("user", $user);
 		$this->view->render("users", "login");
 	}
 
@@ -119,6 +123,7 @@ class UsersController extends BaseController {
 			$user->setUsername($_POST["username"]);
 			$user->setPassword($_POST["passwd"]);
 			$user->setEmail($_POST["email"]);
+			$user->setPassword2($_POST["passwd2"]);
 
 			try{
 				$user->checkIsValidForRegister(); // if it fails, ValidationException

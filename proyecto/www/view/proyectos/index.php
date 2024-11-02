@@ -8,7 +8,9 @@ $proyectos = $view->getVariable("proyectos");
 
 $currentuser = $view->getVariable("currentusername");
 
-$view->setVariable("title", "Proyectos");
+$errors = $view->getVariable("errors");
+
+$view->setVariable("title", i18n("Projects") );
 
 ?>
 
@@ -108,6 +110,7 @@ $view->setVariable("title", "Proyectos");
                                     <i class="fa-regular fa-folder-open text-gray-300"></i>
                                 </div>
                             </div>
+                            <p class="text-red-600 inline"><?= isset($errors["projectName"])?i18n($errors["projectName"]):"" ?></p>
                             <div class="flex flex-wrap mb-4">
                                 <label class="flex items-center me-4 relative">
                                     <input id="orange-radio" type="radio" name="projectTheme" value="orange-300" class="hidden peer" required />

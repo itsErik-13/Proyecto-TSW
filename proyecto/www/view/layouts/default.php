@@ -39,10 +39,11 @@ $currentuser = $view->getVariable("currentusername");
             <img src="<?php echo '/controller/ImageController.php?image=logo.png'; ?>" alt="Logo" class="w-10 h-10">
             <h1 class="text-3xl font-bold text-white">Paybuddy</h1>
         </div>
-        <div class="absolute top-5 right-5 flex items-center space-x-2">
+        <div class="absolute top-5 right-5 flex items-center  space-x-2">
             <?php if (isset($currentuser)): ?>
-                <?= sprintf($currentuser) ?>
-                <a href="index.php?controller=users&amp;action=logout" class="pl-2"><?= i18n("Logout") ?></a>
+                <p class="text-white text-center"><?= sprintf($currentuser) ?></p>
+                <a href="index.php?controller=users&amp;action=logout" class="pl-2 w-10"><img
+                src="<?php echo '/controller/ImageController.php?image=login.svg'; ?>"></a>
 
 
             <?php else: ?>

@@ -126,16 +126,8 @@ class Proyecto {
 	public function checkIsValidForUpdate() {
 		$errors = array();
 
-		if (!isset($this->id)) {
-			$errors["id"] = "id is mandatory";
-		}
-
-		try{
-			$this->checkIsValidForCreate();
-		}catch(ValidationException $ex) {
-			foreach ($ex->getErrors() as $key=>$error) {
-				$errors[$key] = $error;
-			}
+		if (!isset($this->name)) {
+			$errors["projectName"] = "Name is mandatory";
 		}
 		if (sizeof($errors) > 0) {
 			throw new ValidationException($errors, "Project is not valid");

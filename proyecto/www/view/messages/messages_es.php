@@ -30,7 +30,14 @@ array(
 	"Register" => "Registro",
 	"Edit" => "Editar",
 	"Delete" => "Eliminar",
-	"Create post" => "Crear artículo",
+	"Username must be at least 4 characters length" => "El nombre de usuario debe tener al menos 4 caracteres",
+	"Password must be at least 4 characters length" => "La contraseña debe tener al menos 4 caracteres",
+	"Email must be valid"=> "El email debe ser valido",
+	"Passwords must match"=> "Las contraseñas deben coincidir",
+	"Username already exists" => "El nombre de usuario ya existe",
+
+	"Name is mandatory"=> "El nombre es obligatorio",
+
 	"Comments" => "Comentarios",
 	"Write a comment" => "Escribe un comentario",
 	"%s commented..."=>"%s ha comentado...",

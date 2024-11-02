@@ -31,6 +31,8 @@ class User
 	 */
 	private $email;
 
+	private $passwd2;
+
 	/**
 	 * The constructor
 	 *
@@ -38,11 +40,12 @@ class User
 	 * @param string $passwd The password of the user
 	 * @param string $email The email of the user
 	 */
-	public function __construct($username = NULL, $passwd = NULL, $email = NULL)
+	public function __construct($username = NULL, $passwd = NULL, $email = NULL, $passwd2 = NULL)
 	{
 		$this->username = $username;
 		$this->passwd = $passwd;
 		$this->email = $email;
+		$this->passwd2 = $passwd2;
 	}
 
 	/**
@@ -75,6 +78,16 @@ class User
 	{
 		return $this->passwd;
 	}
+
+	/**
+	 * Gets the password2 of this user
+	 *
+	 * @return string The password of this user
+	 */
+	public function getPasswd2()
+	{
+		return $this->passwd2;
+	}
 	/**
 	 * Sets the password of this user
 	 *
@@ -84,6 +97,17 @@ class User
 	public function setPassword($passwd)
 	{
 		$this->passwd = $passwd;
+	}
+
+	/**
+	 * Sets the password of this user
+	 *
+	 * @param string $passwd The password of this user
+	 * @return void
+	 */
+	public function setPassword2($passwd2)
+	{
+		$this->passwd2 = $passwd2;
 	}
 
 	/**
@@ -119,12 +143,16 @@ class User
 	public function checkIsValidForRegister()
 	{
 		$errors = array();
-		if (strlen($this->username) < 5) {
-			$errors["username"] = "Username must be at least 5 characters length";
+		if (strlen($this->username) < 4) {
+			$errors["username"] = "Username must be at least 4 characters length";
 
 		}
-		if (strlen($this->passwd) < 5) {
-			$errors["passwd"] = "Password must be at least 5 characters length";
+		if (strlen($this->passwd) < 4) {
+			$errors["passwd"] = "Password must be at least 4 characters length";
+		}if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
+			$errors["email"] = "Email must be valid";
+		}if ($this->passwd2 != $this->passwd) {
+			$errors["passwd2"] = "Passwords must match";
 		}
 		if (sizeof($errors) > 0) {
 			throw new ValidationException($errors, "User is not valid");

@@ -5,7 +5,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $errors = $view->getVariable("errors");
 $user = $view->getVariable("user");
-$view->setVariable("title", "Register");
+$view->setVariable("title", i18n("Register"));
 ?>
 
 <div class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-sm w-full h">
@@ -14,34 +14,39 @@ $view->setVariable("title", "Register");
         <form class="space-y-4 text-[#fff] max-w-md mx-auto" action="index.php?controller=users&amp;action=register" method="POST">
             <div class="relative flex items-center">
                 <input type="text" name="username" placeholder="<?= i18n("Username")?>"
-                    class="px-4 py-3 bg-[#323231] focus:bg-transparent w-full text-sm border outline-[#edb705] rounded transition-all" />
+                    class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all" value="<?= $user->getUsername() ?>"/>
                 <div class="absolute right-4 flex items-centerpointer-events-none">
                     <i class="fa-regular fa-user text-gray-300"></i>
                 </div>
             </div>
+            <p class="text-red-600 inline"><?= isset($errors["username"])?i18n($errors["username"]):"" ?></p>
+
             <div class="relative flex items-center">
                 <input type="email" name="email" placeholder="<?= i18n(key: "Email")?>"
-                    class="px-4 py-3 bg-[#323231] focus:bg-transparent w-full text-sm border outline-[#edb705] rounded transition-all" />
+                    class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all" value="<?= $user->getEmail() ?>"/>
                 <div class="absolute right-4 flex items-centerpointer-events-none">
                     <i class="fa-regular fa-envelope text-gray-300"></i>
                 </div>
             </div>
+            <p class="text-red-600 inline"><?= isset($errors["email"])?i18n($errors["email"]):"" ?></p>
 
             <div class="relative flex items-center">
                 <input type="password" name="passwd" placeholder="<?= i18n("Password")?>"
-                    class="px-4 py-3 bg-[#323231] focus:bg-transparent w-full text-sm border outline-[#edb705] rounded transition-all" />
+                    class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all" value="<?= $user->getPasswd() ?>"/>
                 <div class="absolute right-4 flex items-centerpointer-events-none">
                     <i class="fa-regular fa-eye text-gray-300"></i>
                 </div>
             </div>
+            <p class="text-red-600 inline"><?= isset($errors["passwd"])?i18n($errors["passwd"]):"" ?></p>
             
             <div class="relative flex items-center">
                 <input type="password" name="passwd2" placeholder="<?= i18n("Password")?>"
-                    class="px-4 py-3 bg-[#323231] focus:bg-transparent w-full text-sm border outline-[#edb705] rounded transition-all" />
+                    class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all" value="<?= $user->getPasswd2() ?>"/>
                 <div class="absolute right-4 flex items-centerpointer-events-none">
                     <i class="fa-regular fa-eye text-gray-300"></i>
                 </div>
             </div>
+            <p class="text-red-600 inline"><?= isset($errors["passwd2"])?i18n($errors["passwd2"]):"" ?></p>
 
             <div class="relative flex items-centerpointer-events-none">
                 <button type="submit"

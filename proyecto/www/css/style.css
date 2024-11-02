@@ -4,7 +4,7 @@
 }
 
 #flash {
-	background-color:green;
+	color:green;
 	animation: backgroundflash 5s forwards; 
 }
 
