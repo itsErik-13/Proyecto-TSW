@@ -52,6 +52,6 @@ $view->setVariable("title", "Register");
         </form>
 
         <div class="mt-4 ">
-            <a href="index.php?controller=users&amp;action=login" class="text-yellow-400 hover:text-yellow-500 text-sm underline">Ya tengo una cuenta</a>
+            <a href="index.php?controller=users&amp;action=login" class="text-yellow-400 hover:text-yellow-500 text-sm underline"><?= i18n("I already have an account") ?></a>
         </div>
     </div>

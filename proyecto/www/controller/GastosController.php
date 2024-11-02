@@ -1,15 +1,15 @@
 <?php
-//file: controller/PostController.php
+//file: controller/GastosController.php
 
-require_once(__DIR__."/../model/Proyecto.php");
-require_once(__DIR__."/../model/ProyectoMapper.php");
+require_once(__DIR__."/../model/Gasto.php");
+require_once(__DIR__."/../model/GastoMapper.php");
 require_once(__DIR__."/../model/User.php");
 
 require_once(__DIR__ ."/../core/ViewManager.php");
 require_once(__DIR__ ."/../controller/BaseController.php");
 
 /**
- * Class ProyectosController
+ * Class GastosController
  *
  * Controller to make a CRUDL of Proyects entities
  *

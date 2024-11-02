@@ -13,7 +13,7 @@ $view->setVariable("title", "Proyectos");
 ?>
 
 <div class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-4xl w-full text-center">
-        <h2 class="text-3xl font-bold text-white mb-6">Proyectos</h2>
+        <h2 class="text-3xl font-bold text-white mb-6"><?= i18n("Projects") ?></h2>
         
         <!-- Lista de proyectos -->
         <div class="space-y-4 overflow-y-auto max-h-[350px] pr-2
@@ -49,7 +49,7 @@ $view->setVariable("title", "Proyectos");
                             <!-- Contenedor para el título -->
                             <div class="mr-4">
                                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                    ¿Desea eliminar el proyecto?
+                                    <?= i18n("Do you want to delete the project?") ?>
                                 </h3>
                             </div>
                         
@@ -91,7 +91,7 @@ $view->setVariable("title", "Proyectos");
             <div class="relative p-4 max-w-2xl max-h-full">
                 <div class="relative bg-[#323231] rounded-lg shadow"> 
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Añadir Nuevo Proyecto</h3>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white"><?= i18n("Add new project") ?></h3>
                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="modal-addProject">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -102,7 +102,7 @@ $view->setVariable("title", "Proyectos");
                     <div class="p-4">
                         <form id="addProjectForm" class="text-white" method="POST" action="index.php?controller=proyectos&amp;action=add"> 
                             <div class="relative flex items-center mb-4">
-                                <input type="text" placeholder="Project name" name="projectName"
+                                <input type="text" name="projectName" placeholder="<?= i18n("Project name") ?>"
                                     class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all" required/>
                                 <div class="absolute right-4 flex items-centerpointer-events-none">
                                     <i class="fa-regular fa-folder-open text-gray-300"></i>
@@ -143,7 +143,7 @@ $view->setVariable("title", "Proyectos");
                                 <button type="submit" name="submit" class="text-white bg-[#edb705] hover:bg-[#ab8403] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     <i class="fa-solid fa-folder-plus"></i>
                                 </button>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm px-5 py-2.5" data-modal-toggle="modal-addProject">Cancelar</button>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm px-5 py-2.5" data-modal-toggle="modal-addProject"><?= i18n("Cancel") ?></button>
                             </div>
                         </form>
                     </div>

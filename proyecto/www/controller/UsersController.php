@@ -74,7 +74,7 @@ class UsersController extends BaseController {
 
 			}else{
 				$errors = array();
-				$errors["general"] = "Username is not valid";
+				$errors["general"] = i18n("User is not valid");
 				$this->view->setVariable("errors", $errors);
 			}
 		}
@@ -121,7 +121,7 @@ class UsersController extends BaseController {
 			$user->setEmail($_POST["email"]);
 
 			try{
-				//$user->checkIsValidForRegister(); // if it fails, ValidationException
+				$user->checkIsValidForRegister(); // if it fails, ValidationException
 
 				// check if user exists in the database
 				if (!$this->userMapper->usernameExists($_POST["username"])){
@@ -134,7 +134,7 @@ class UsersController extends BaseController {
 					// We want to see a message after redirection, so we establish
 					// a "flash" message (which is simply a Session variable) to be
 					// get in the view after redirection.
-					$this->view->setFlash("Username ".$user->getUsername()." successfully added. Please login now");
+					$this->view->setFlash(sprintf(i18n("Username \"%s\" successfully added. Please login now"),$user->getUsername()));
 
 					// perform the redirection. More or less:
 					// header("Location: index.php?controller=users&action=login")

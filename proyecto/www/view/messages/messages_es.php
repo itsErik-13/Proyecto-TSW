@@ -12,9 +12,14 @@ array(
 	"Create post" => "Crear artículo",
 	"Hello %s" => "Hola %s",
 	"Modify post" => "Modificar artículo",
-	"Post \"%s\" successfully added." => "Artículo \"%s\" añadido.",
-	"Post \"%s\" successfully updated." => "Artículo \"%s\" modificado.",
-	"Post \"%s\" successfully deleted." => "Artículo \"%s\" eliminado.",
+
+	"Project \"%s\" successfully added." => "Proyecto \"%s\" añadido satisfactoriamente.",
+	"Project \"%s\" successfully updated." => "Proyecto \"%s\" modificado satisfactoriamente.",
+	"Project \"%s\" successfully deleted." => "Proyecto \"%s\" eliminado satisfactoriamente.",
+	"Username \"%s\" successfully added. Please login now" => "Usuario \"%s\" añadido satisfactoriamente. Por favor inicia sesión",
+	"Username \"%s\" successfully updated. Please login now" => "Usuario \"%s\" modificado satisfactoriamente. Por favor inicia sesión",
+	"Username \"%s\" successfully deleted. Please login now" => "Usuario \"%s\" eliminado satisfactoriamente. Por favor inicia sesión",
+
 	"Login" => "Iniciar sesión",
 	"Logout"=> "Cerrar sesión",
 	"Username" => "Nombre de usuario",
@@ -38,6 +43,19 @@ array(
 	"content is mandatory" => "El contenido es obligatorio",
 	"title is mandatory" => "El título es obligatorio",
 	"author is mandatory" => "El autor es obligatorio",
-	"post is not valid" => "El artículo no es válido"
+	"post is not valid" => "El artículo no es válido",
+	"I already have an account" => "Ya tengo una cuenta",
+	"Projects" => "Proyectos",
+	"Do you want to delete the project?" => "¿Desea eliminar el proyecto?",
+	"Add new project" => "Añadir proyecto",
+	"Project name" => "Nombre del proyecto",
+	"Cancel" => "Cancelar",
+	"User is not valid" => "El usuario no es válido",
+	"Payer id is mandatory" => "El id del pagador es obligatorio",
+	"Project id is mandatory" => "El id del proyecto es obligatorio",
+	"Payment id is mandatory" => "El id del pago es obligatorio",
+	"Debt is mandatory" => "La deuda es obligatoria",
+	"Total amount is mandatory" => "El importe total es obligatorio",
+	"Payment is not valid" => "El pago no es válido",
 )
 ?>
