@@ -19,6 +19,7 @@ array(
 	"Username \"%s\" successfully added. Please login now" => "Usuario \"%s\" añadido satisfactoriamente. Por favor inicia sesión",
 	"Username \"%s\" successfully updated. Please login now" => "Usuario \"%s\" modificado satisfactoriamente. Por favor inicia sesión",
 	"Username \"%s\" successfully deleted. Please login now" => "Usuario \"%s\" eliminado satisfactoriamente. Por favor inicia sesión",
+	"Member \"%s\" successfully added." => "Miembro \"%s\" añadido satisfactoriamente.",
 
 	"Login" => "Iniciar sesión",
 	"Logout"=> "Cerrar sesión",

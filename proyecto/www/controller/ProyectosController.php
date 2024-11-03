@@ -270,6 +270,8 @@ class ProyectosController extends BaseController
 				// validate Proyecto object
 				$this->proyectoMapper->addMember($proyecto, $member); // if it fails, ValidationException
 
+				$this->view->setFlash(sprintf(i18n("Member \"%s\" successfully added."), $member->getusername()));
+
 
 				// POST-REDIRECT-GET
 				// Everything OK, we will redirect the user to the list of proyectos
