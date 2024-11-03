@@ -20,6 +20,8 @@ $currentuser = $view->getVariable("currentusername");
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>  -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <link rel="icon" href="<?php echo '/controller/ImageController.php?image=logo.png'; ?>" type="image/x-icon">
     <script>
         tailwind.config = {
             theme: {
