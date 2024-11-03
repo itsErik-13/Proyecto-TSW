@@ -89,6 +89,13 @@ class ProyectosController extends BaseController
 	 */
 	public function view()
 	{
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding posts requires login");
+		}
+
+
+
 		if (!isset($_GET["id"])) {
 			throw new Exception("id is mandatory");
 		}
@@ -97,6 +104,12 @@ class ProyectosController extends BaseController
 
 		// find the Proyect object in the database
 		$proyecto = $this->proyectoMapper->findById($proyectoid);
+		$test = $this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername());
+		die($test);
+		if ($this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername()) == false) {
+			throw new Exception("You should be part of the project to view or edit it");
+		}
+
 
 		if ($proyecto == NULL) {
 			throw new Exception("no such proyect with id: " . $proyectoid);
@@ -259,7 +272,9 @@ class ProyectosController extends BaseController
 		}
 		if (isset($_POST["submit"])) { // reaching via HTTP Post...
 			$proyecto = $this->proyectoMapper->findById($_POST["id"]);
-
+			if ($this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername()) == false) {
+				throw new Exception("You should be part of the project to view or edit it");
+			}
 			try {
 				$member = $this->userMapper->getUserByEmail($_POST["email"]);
 				if ($member == NULL) {
@@ -278,28 +293,31 @@ class ProyectosController extends BaseController
 				// We want to see a message after redirection, so we establish
 				// a "flash" message (which is simply a Session variable) to be
 				// get in the view after redirection.
-				
+
 				$this->view->setVariable("proyecto", $proyecto);
 				$this->view->setVariable("members", $this->proyectoMapper->getMembers($proyecto));
 				// perform the redirection. More or less:
 				// header("Location: index.php?controller=proyectos&action=index")
 				// die();
-				$this->view->redirect("proyectos", "viewMembers", "id=".$proyecto->getId());
+				$this->view->redirect("proyectos", "viewMembers", "id=" . $proyecto->getId());
 
-				
+
 
 			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
-				if($member == NULL){
+				if ($member == NULL) {
 					$member = new User(email: $_POST["email"]);
 				}
 				$this->view->setVariable("member", $member);
 			}
 		} else {
 			$proyecto = $this->proyectoMapper->findById($_GET["id"]);
+			if ($this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername()) == false) {
+				throw new Exception("You should be part of the project to view or edit it");
+			}
 		}
 		// Put the Proyect object visible to the view
 		$this->view->setVariable("proyecto", $proyecto);
@@ -319,6 +337,9 @@ class ProyectosController extends BaseController
 			throw new Exception("Not in session. Viewing members requires login");
 		}
 		$proyecto = $this->proyectoMapper->findById($_GET["id"]);
+		if ($this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername()) == false) {
+			throw new Exception("You should be part of the project to view or edit it");
+		}
 		$members = $this->proyectoMapper->getMembers($proyecto);
 		$this->view->setVariable("members", $members);
 		$this->view->setVariable("proyecto", $proyecto);

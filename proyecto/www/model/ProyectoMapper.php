@@ -205,4 +205,12 @@ class ProyectoMapper {
 			return sizeof($members) == 0;
 		}
 
+
+		public function canManageProject(Proyecto $proyecto,  $username) {
+			$stmt = $this->db->prepare("SELECT * FROM members WHERE idProject=? AND username=?");
+			$stmt->execute(array($proyecto->getId(), $username));
+			$members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return sizeof($members) != 0;
+		}
+
 	}

@@ -23,13 +23,13 @@ $view->setVariable("title", i18n("Members"));
     <nav>
         <ul class="flex justify-center space-x-10 text-white text-lg font-bold">
             <li>
-                <a href="CHANGE" class="hover:text-yellow-400"><?=i18n("Payments") ?></a>
+                <a href="CHANGE" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Payments") ?></a>
             </li>
             <li>
-                <a href="CHANGE" class="hover:text-yellow-400"><?=i18n("Debts") ?></a>
+                <a href="CHANGE" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Debts") ?></a>
             </li>
             <li>
-                <a href="CHANGE" class="text-yellow-400 underline"><?=i18n("Members") ?></a>
+                <a href="CHANGE" class="text-<?=$proyecto->getTheme()?> underline"><?=i18n("Members") ?></a>
             </li>
         </ul>
     </nav>
