@@ -35,8 +35,13 @@ array(
 	"Email must be valid"=> "El email debe ser valido",
 	"Passwords must match"=> "Las contraseñas deben coincidir",
 	"Username already exists" => "El nombre de usuario ya existe",
-
 	"Name is mandatory"=> "El nombre es obligatorio",
+	"Payments"=> "Pagos",
+	"Members"=> "Miembros",
+	"Debts"=> "Deudas",
+	"Add member"=> "Añadir miembro",
+	"User not found"=> "Usuario no encontrado",
+	"The user is already on the project"=> "El usuario ya pertenece al proyecto",
 
 	"Comments" => "Comentarios",
 	"Write a comment" => "Escribe un comentario",

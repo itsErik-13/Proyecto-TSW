@@ -8,7 +8,7 @@ $currentuser = $view->getVariable("currentusername");
 <html>
 
 <head>
-	<title><?= $view->getVariable("title", "no title") ?></title>
+    <title><?= $view->getVariable("title", "no title") ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -35,17 +35,18 @@ $currentuser = $view->getVariable("currentusername");
     class="bg-amber-900 sm:bg-red-400 md:bg-indigo-500 lg:bg-green-400 xl:bg-fuchsia-500 2xl:bg-[#edb705] flex flex-col items-center justify-center h-screen">
     <!-- header -->
     <header>
-        <div class="absolute top-5 left-5 flex items-center space-x-2">
-            <img src="<?php echo '/controller/ImageController.php?image=logo.png'; ?>" alt="Logo" class="w-10 h-10">
-            <h1 class="text-3xl font-bold text-white">Paybuddy</h1>
-        </div>
+        <a href="index.php?controller=proyectos&amp;action=index">
+            <div class="absolute top-5 left-5 flex items-center space-x-2">
+                <img src="<?php echo '/controller/ImageController.php?image=logo.png'; ?>" alt="Logo" class="w-10 h-10">
+                <h1 class="text-3xl font-bold text-white">Paybuddy</h1>
+            </div>
+        </a>
+
         <div class="absolute top-5 right-5 flex items-center  space-x-2">
             <?php if (isset($currentuser)): ?>
                 <p class="text-white text-center"><?= sprintf($currentuser) ?></p>
                 <a href="index.php?controller=users&amp;action=logout" class="pl-2 w-10"><img
-                src="<?php echo '/controller/ImageController.php?image=login.svg'; ?>"></a>
-
-
+                        src="<?php echo '/controller/ImageController.php?image=login.svg'; ?>"></a>
             <?php else: ?>
                 <a href="index.php?controller=users&amp;action=login"><?= i18n("Login") ?></a>
             <?php endif ?>
@@ -53,7 +54,7 @@ $currentuser = $view->getVariable("currentusername");
     </header>
 
 
-    <main  class="flex flex-col justify-center items-center h-full w-full">
+    <main class="flex flex-col justify-center items-center h-full w-full">
         <div id="flash">
             <?= $view->popFlash() ?>
         </div>

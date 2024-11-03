@@ -129,11 +129,12 @@ class ProyectoMapper {
 		}
 
 		/**
-		* Saves a Proyect into the database
+		* Saves a Project into the database
 		*
-		* @param Post $post The post to be saved
+		* @param Post $post The project to be saved
+		* @param User $user The author of the project
 		* @throws PDOException if a database error occurs
-		* @return int The mew post id
+		* @return int The mew project id
 		*/
 		public function save(Proyecto $proyecto, User $user) {
 			$stmt = $this->db->prepare("INSERT INTO projects (projectName, theme) values (?,?)");
@@ -142,6 +143,33 @@ class ProyectoMapper {
             $stmt = $this->db->prepare("INSERT INTO members (idProject, username) values (?,?)");
             $stmt->execute(array($id, $user->getUsername()));
 			return $this->db->lastInsertId();
+		}
+
+		/**
+		* Adds a member to a project
+		*
+		* @param Proyecto $proyecto The project member will be added
+		* @throws PDOException if a database error occurs
+		* @return int The mew post id
+		*/
+		public function addMember(Proyecto $proyecto, User $user) {
+			if($this->canAddMember($proyecto, $user)) {
+			$stmt = $this->db->prepare("INSERT INTO members (idProject, username) values (?,?)");
+			$stmt->execute(array($proyecto->getId(), $user->getUsername()));
+			return $this->db->lastInsertId();
+			}else{
+				$errors = array();
+				$errors["email"] = "The user is already on the project";
+				throw New ValidationException($errors);
+			}
+		}
+
+
+		public function getMembers(Proyecto $proyecto) {
+			$stmt = $this->db->prepare("SELECT * FROM members WHERE idProject=?");
+			$stmt->execute(array($proyecto->getId()));
+			$members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $members;
 		}
 
 		/**
@@ -166,6 +194,15 @@ class ProyectoMapper {
 		public function delete(Proyecto $project) {
 			$stmt = $this->db->prepare("DELETE from projects WHERE idProject=?");
 			$stmt->execute(array($project->getId()));
+		}
+
+
+		public function canAddMember(Proyecto $project, User $user) {
+			$stmt = $this->db->prepare("SELECT * FROM members WHERE idProject=? AND username=?");
+			$stmt->execute(array($project->getId(), $user->getUsername()));
+			$members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt = $this->db->prepare("SELECT * FROM members WHERE idProject=? AND username=?");
+			return sizeof($members) == 0;
 		}
 
 	}

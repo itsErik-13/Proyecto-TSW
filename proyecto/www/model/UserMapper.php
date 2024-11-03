@@ -64,4 +64,16 @@ class UserMapper {
 			return true;
 		}
 	}
+
+	public function getUserByEmail($email) {
+		$stmt = $this->db->prepare("SELECT * FROM users where email=?");
+		$stmt->execute(array($email));
+
+		if ($stmt->rowCount() == 0) {
+			return NULL;
+		}
+
+		$user = $stmt->fetch(PDO::FETCH_ASSOC);
+		return new User($user["username"], $user["passwd"], $user["email"] ,);
+	}
 }

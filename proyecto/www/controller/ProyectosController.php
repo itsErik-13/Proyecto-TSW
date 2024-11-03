@@ -1,12 +1,13 @@
 <?php
 //file: controller/PostController.php
 
-require_once(__DIR__."/../model/Proyecto.php");
-require_once(__DIR__."/../model/ProyectoMapper.php");
-require_once(__DIR__."/../model/User.php");
+require_once(__DIR__ . "/../model/Proyecto.php");
+require_once(__DIR__ . "/../model/ProyectoMapper.php");
+require_once(__DIR__ . "/../model/userMapper.php");
+require_once(__DIR__ . "/../model/User.php");
 
-require_once(__DIR__ ."/../core/ViewManager.php");
-require_once(__DIR__ ."/../controller/BaseController.php");
+require_once(__DIR__ . "/../core/ViewManager.php");
+require_once(__DIR__ . "/../controller/BaseController.php");
 
 /**
  * Class ProyectosController
@@ -18,73 +19,76 @@ require_once(__DIR__ ."/../controller/BaseController.php");
 class ProyectosController extends BaseController
 {
 
-    /**
-     * Reference to the ProyectoMapper to interact
-     * with the database
-     *
-     * @var ProyectoMapper
-     */
-    private $proyectoMapper;
+	/**
+	 * Reference to the ProyectoMapper to interact
+	 * with the database
+	 *
+	 * @var ProyectoMapper
+	 */
+	private $proyectoMapper;
+	private $userMapper;
 
-    public function __construct()
-    {
-        parent::__construct();
+	public function __construct()
+	{
+		parent::__construct();
 		$this->view->setLayout("default");
-        $this->proyectoMapper = new ProyectoMapper();
-    }
+		$this->proyectoMapper = new ProyectoMapper();
+		$this->userMapper = new UserMapper();
+	}
 
-    /**
-     * Action to list proyects
-     *
-     * Loads all the proyects from the database.
-     * No HTTP parameters are needed.
-     *
-     * The views are:
-     * <ul>
-     * <li>proyectos/index (via include)</li>
-     * </ul>
-     */
-    public function index()
-    {
+	/**
+	 * Action to list proyects
+	 *
+	 * Loads all the proyects from the database.
+	 * No HTTP parameters are needed.
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>proyectos/index (via include)</li>
+	 * </ul>
+	 */
+	public function index()
+	{
 
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding posts requires login");
 		}
-        // obtain the data from the database
+		// obtain the data from the database
 		$proyectos = $this->proyectoMapper->findProyectsByMember($this->currentUser->getUsername());
 
-        // put the array containing Proyect object to the view
-        $this->view->setVariable("proyectos", $proyectos);
+		// put the array containing Proyect object to the view
+		$this->view->setVariable("proyectos", $proyectos);
 
-        // render the view (/view/proyectos/index.php)
-        $this->view->render("proyectos", "index");
-    }
+		// render the view (/view/proyectos/index.php)
+		$this->view->render("proyectos", "index");
+	}
 
-    /**
-	* Action to view a given proyect
-	*
-	* This action should only be called via GET
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>id: Id of the proyect (via HTTP GET)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>proyectos/view: If proyect is successfully loaded (via include).	Includes these view variables:</li>
-	* <ul>
-	*	<li>post: The current Proyect retrieved</li>
-	*	<li>comment: The current Comment instance, empty or
-	*	being added (but not validated)</li>
-	* </ul>
-	* </ul>
-	*
-	* @throws Exception If no such post of the given id is found
-	* @return void
-	*
-	*/
-	public function view(){
+	/**
+	 * Action to view a given proyect
+	 *
+	 * This action should only be called via GET
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>id: Id of the proyect (via HTTP GET)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>proyectos/view: If proyect is successfully loaded (via include).	Includes these view variables:</li>
+	 * <ul>
+	 *	<li>post: The current Proyect retrieved</li>
+	 *	<li>comment: The current Comment instance, empty or
+	 *	being added (but not validated)</li>
+	 * </ul>
+	 * </ul>
+	 *
+	 * @throws Exception If no such post of the given id is found
+	 * @return void
+	 *
+	 */
+	public function view()
+	{
 		if (!isset($_GET["id"])) {
 			throw new Exception("id is mandatory");
 		}
@@ -95,7 +99,7 @@ class ProyectosController extends BaseController
 		$proyecto = $this->proyectoMapper->findById($proyectoid);
 
 		if ($proyecto == NULL) {
-			throw new Exception("no such proyect with id: ".$proyectoid);
+			throw new Exception("no such proyect with id: " . $proyectoid);
 		}
 
 		// put the Proyect object to the view
@@ -106,39 +110,40 @@ class ProyectosController extends BaseController
 		// $comment = $this->view->getVariable("comment");
 		// $this->view->setVariable("comment", ($comment==NULL)?new Comment():$comment);
 
-		// render the pproyect (/view/proyectos/view.php)
-		$this->view->render("proyectos", "view");
+		// render the pproyect (/view/pagos/index.php)
+		$this->view->render("pagos", "index");
 
 	}
 
-    /**
-	* Action to add a new proyect
-	*
-	* When called via GET, it shows the add form
-	* When called via POST, it adds the proyect to the
-	* database
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>title: Title of the proyect (via HTTP POST)</li>
-	* <li>content: Content of the proyect (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>proyectos/add: If this action is reached via HTTP GET (via include)</li>
-	* <li>proyectos/index: If proyect was successfully added (via redirect)</li>
-	* <li>proyectos/add: If validation fails (via include). Includes these view variables:</li>
-	* <ul>
-	*	<li>proyect: The current Proyect instance, empty or
-	*	being added (but not validated)</li>
-	*	<li>errors: Array including per-field validation errors</li>
-	* </ul>
-	* </ul>
-	* @throws Exception if no user is in session
-	* @return void
-	*/
-	public function add() {
+	/**
+	 * Action to add a new proyect
+	 *
+	 * When called via GET, it shows the add form
+	 * When called via POST, it adds the proyect to the
+	 * database
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>title: Title of the proyect (via HTTP POST)</li>
+	 * <li>content: Content of the proyect (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>proyectos/add: If this action is reached via HTTP GET (via include)</li>
+	 * <li>proyectos/index: If proyect was successfully added (via redirect)</li>
+	 * <li>proyectos/add: If validation fails (via include). Includes these view variables:</li>
+	 * <ul>
+	 *	<li>proyect: The current Proyect instance, empty or
+	 *	being added (but not validated)</li>
+	 *	<li>errors: Array including per-field validation errors</li>
+	 * </ul>
+	 * </ul>
+	 * @throws Exception if no user is in session
+	 * @return void
+	 */
+	public function add()
+	{
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding proyects requires login");
 		}
@@ -166,14 +171,14 @@ class ProyectosController extends BaseController
 				// We want to see a message after redirection, so we establish
 				// a "flash" message (which is simply a Session variable) to be
 				// get in the view after redirection.
-				$this->view->setFlash(sprintf(i18n("Project \"%s\" successfully added."),$proyecto ->getName()));
+				$this->view->setFlash(sprintf(i18n("Project \"%s\" successfully added."), $proyecto->getName()));
 
 				// perform the redirection. More or less:
 				// header("Location: index.php?controller=proyectos&action=index")
 				// die();
 				$this->view->redirect("proyectos", "index");
 
-			}catch(ValidationException $ex) {
+			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
@@ -189,43 +194,43 @@ class ProyectosController extends BaseController
 
 	}
 
-    // EDIT
 
-    /**
-	* Action to delete a proyect
-	*
-	* This action should only be called via HTTP POST
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>id: Id of the proyect (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>proyectos/index: If proyect was successfully deleted (via redirect)</li>
-	* </ul>
-	* @throws Exception if no id was provided
-	* @throws Exception if no user is in session
-	* @throws Exception if there is not any post with the provided id
-	* @throws Exception if the author of the post to be deleted is not the current user
-	* @return void
-	*/
-	public function delete() {
+	/**
+	 * Action to delete a proyect
+	 *
+	 * This action should only be called via HTTP POST
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>id: Id of the proyect (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>proyectos/index: If proyect was successfully deleted (via redirect)</li>
+	 * </ul>
+	 * @throws Exception if no id was provided
+	 * @throws Exception if no user is in session
+	 * @throws Exception if there is not any post with the provided id
+	 * @throws Exception if the author of the post to be deleted is not the current user
+	 * @return void
+	 */
+	public function delete()
+	{
 		if (!isset($_POST["id"])) {
 			throw new Exception("id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing proyects requires login");
 		}
-		
+
 		// Get the Proyect object from the database
 		$proyectoid = $_REQUEST["id"];
 		$proyecto = $this->proyectoMapper->findById($proyectoid);
 
 		// Does the post exist?
 		if ($proyecto == NULL) {
-			throw new Exception("no such proyect with id: ".$proyectoid);
+			throw new Exception("no such proyect with id: " . $proyectoid);
 		}
 
 		// Delete the Post object from the database
@@ -236,7 +241,7 @@ class ProyectosController extends BaseController
 		// We want to see a message after redirection, so we establish
 		// a "flash" message (which is simply a Session variable) to be
 		// get in the view after redirection.
-		$this->view->setFlash(sprintf(i18n("Project \"%s\" successfully deleted."),$proyecto ->getName()));
+		$this->view->setFlash(sprintf(i18n("Project \"%s\" successfully deleted."), $proyecto->getName()));
 
 		// perform the redirection. More or less:
 		// header("Location: index.php?controller=posts&action=index")
@@ -244,4 +249,79 @@ class ProyectosController extends BaseController
 		$this->view->redirect("proyectos", "index");
 
 	}
+
+
+	public function addMember()
+	{
+		$member = new User();
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding members requires login");
+		}
+		if (isset($_POST["submit"])) { // reaching via HTTP Post...
+			$proyecto = $this->proyectoMapper->findById($_POST["id"]);
+
+			try {
+				$member = $this->userMapper->getUserByEmail($_POST["email"]);
+				if ($member == NULL) {
+					$errors = array();
+					$errors["email"] = "User not found";
+					throw new ValidationException($errors, "User not found");
+				}
+				// validate Proyecto object
+				$this->proyectoMapper->addMember($proyecto, $member); // if it fails, ValidationException
+
+
+				// POST-REDIRECT-GET
+				// Everything OK, we will redirect the user to the list of proyectos
+				// We want to see a message after redirection, so we establish
+				// a "flash" message (which is simply a Session variable) to be
+				// get in the view after redirection.
+				
+				$this->view->setVariable("proyecto", $proyecto);
+				$this->view->setVariable("members", $this->proyectoMapper->getMembers($proyecto));
+				// perform the redirection. More or less:
+				// header("Location: index.php?controller=proyectos&action=index")
+				// die();
+				$this->view->redirect("proyectos", "viewMembers", "id=".$proyecto->getId());
+
+				
+
+			} catch (ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+				if($member == NULL){
+					$member = new User(email: $_POST["email"]);
+				}
+				$this->view->setVariable("member", $member);
+			}
+		} else {
+			$proyecto = $this->proyectoMapper->findById($_GET["id"]);
+		}
+		// Put the Proyect object visible to the view
+		$this->view->setVariable("proyecto", $proyecto);
+		$this->view->setVariable("member", $member);
+
+		// render the view (/view/proyectos/add.php)
+		$this->view->render("proyectos", "addMember", array("id" => $proyecto->getId()));
+	}
+
+	public function viewMembers()
+	{
+
+		if (!isset($_GET["id"])) {
+			throw new Exception("id is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Viewing members requires login");
+		}
+		$proyecto = $this->proyectoMapper->findById($_GET["id"]);
+		$members = $this->proyectoMapper->getMembers($proyecto);
+		$this->view->setVariable("members", $members);
+		$this->view->setVariable("proyecto", $proyecto);
+		$this->view->render("proyectos", "viewmembers");
+	}
+
+
 }
