@@ -151,9 +151,9 @@ class Gasto {
 		if (strlen(trim($this->projectId)) == 0 ) {
             $errors["projectId"] = i18n("Project id is mandatory");
         }
-        if (strlen(trim($this->paymentId)) == 0 ) {
+        /*if (strlen(trim($this->paymentId)) == 0 ) {
             $errors["paymentId"] = i18n("Payment id is mandatory");
-        }
+        }*/
         if (strlen(trim($this->debt)) == 0 ) {
             $errors["debt"] = i18n("Debt is mandatory");
         }
@@ -188,13 +188,13 @@ class Gasto {
             $errors["paymentId"] = i18n("Payment id is mandatory");
         }
 
-		try{
+		/*try{
 			$this->checkIsValidForCreate();
 		}catch(ValidationException $ex) {
 			foreach ($ex->getErrors() as $key=>$error) {
 				$errors[$key] = $error;
 			}
-		}
+		}*/
 		if (sizeof($errors) > 0) {
 			throw new ValidationException($errors, i18n("Payment is not valid"));
 		}

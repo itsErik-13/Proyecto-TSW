@@ -15,50 +15,58 @@ require_once(__DIR__ ."/../controller/BaseController.php");
  *
  * @author lipido <lipido@gmail.com>
  */
-class ProyectosController extends BaseController
+class GastosController extends BaseController
 {
 
     /**
-     * Reference to the ProyectoMapper to interact
+     * Reference to the GastoMapper to interact
      * with the database
      *
-     * @var ProyectoMapper
+     * @var GastoMapper
      */
-    private $proyectoMapper;
+    private $gastoMapper;
 
     public function __construct()
     {
         parent::__construct();
 		$this->view->setLayout("default");
-        $this->proyectoMapper = new ProyectoMapper();
+        $this->gastoMapper = new GastoMapper();
     }
 
     /**
-     * Action to list proyects
+     * Action to list payments
      *
-     * Loads all the proyects from the database.
+     * Loads all the payments from the database.
      * No HTTP parameters are needed.
      *
      * The views are:
      * <ul>
-     * <li>proyectos/index (via include)</li>
+     * <li>payments/index (via include)</li>
      * </ul>
      */
     public function index()
     {
 
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Adding posts requires login");
+			throw new Exception("Not in session. Adding payment requires login");
 		}
+
+		if (!isset($_GET["id"])) {
+			throw new Exception("id is mandatory");
+		}
+
+		$proyectoid = $_GET["idProject"]; // Revisar si es correcto así? Tambien mirar cual es la clave concreta de un pago
         // obtain the data from the database
-		$proyectos = $this->proyectoMapper->findProyectsByMember($this->currentUser->getUsername());
+		$gastos = $this->gastoMapper->findByProjectId($proyectoid);
 
-        // put the array containing Proyect object to the view
-        $this->view->setVariable("proyectos", $proyectos);
+        // put the array containing Gasto object to the view
+        $this->view->setVariable("gastos", $gastos);
 
-        // render the view (/view/proyectos/index.php)
-        $this->view->render("proyectos", "index");
+        // render the view (/view/gastos/index.php)
+        $this->view->render("gastos", "index");
     }
+
+	// Hasta aquí llegamos :)
 
     /**
 	* Action to view a given proyect
