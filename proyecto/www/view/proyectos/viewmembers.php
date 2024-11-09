@@ -23,7 +23,7 @@ $view->setVariable("title", i18n("Members"));
     <nav>
         <ul class="flex justify-center space-x-10 text-white text-lg font-bold">
             <li>
-                <a href="CHANGE" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Payments") ?></a>
+                <a href="index.php?controller=proyectos&amp;action=view&amp;id=<?= $proyecto->getId() ?>" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Payments") ?></a>
             </li>
             <li>
                 <a href="CHANGE" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Debts") ?></a>

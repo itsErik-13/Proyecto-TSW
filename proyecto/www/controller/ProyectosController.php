@@ -3,6 +3,7 @@
 
 require_once(__DIR__ . "/../model/Proyecto.php");
 require_once(__DIR__ . "/../model/ProyectoMapper.php");
+require_once(__DIR__ . "/../model/GastoMapper.php");
 require_once(__DIR__ . "/../model/userMapper.php");
 require_once(__DIR__ . "/../model/User.php");
 
@@ -27,6 +28,7 @@ class ProyectosController extends BaseController
 	 */
 	private $proyectoMapper;
 	private $userMapper;
+	private $gastoMapper;
 
 	public function __construct()
 	{
@@ -34,6 +36,7 @@ class ProyectosController extends BaseController
 		$this->view->setLayout("default");
 		$this->proyectoMapper = new ProyectoMapper();
 		$this->userMapper = new UserMapper();
+		$this->gastoMapper = new GastoMapper();
 	}
 
 	/**
@@ -102,10 +105,10 @@ class ProyectosController extends BaseController
 
 		$proyectoid = $_GET["id"];
 
+
 		// find the Proyect object in the database
 		$proyecto = $this->proyectoMapper->findById($proyectoid);
-		$test = $this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername());
-		die($test);
+		
 		if ($this->proyectoMapper->canManageProject($proyecto, $this->currentUser->getUsername()) == false) {
 			throw new Exception("You should be part of the project to view or edit it");
 		}
@@ -117,6 +120,8 @@ class ProyectosController extends BaseController
 
 		// put the Proyect object to the view
 		$this->view->setVariable("proyecto", $proyecto);
+		$gastos = $this->gastoMapper->findByProjectIdWithDebtors($proyectoid);
+		$this->view->setVariable("gastos", $gastos);
 
 		// // check if comment is already on the view (for example as flash variable)
 		// // if not, put an empty Comment for the view
@@ -124,7 +129,7 @@ class ProyectosController extends BaseController
 		// $this->view->setVariable("comment", ($comment==NULL)?new Comment():$comment);
 
 		// render the pproyect (/view/pagos/index.php)
-		$this->view->render("pagos", "index");
+		$this->view->render("gastos", "index");
 
 	}
 

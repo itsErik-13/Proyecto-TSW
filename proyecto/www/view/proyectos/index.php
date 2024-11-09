@@ -31,7 +31,7 @@ $view->setVariable("title", i18n("Projects"));
 
             <!-- Div para cada proyecto -->
             <div class="flex justify-between items-center bg-[#3d3d3d] p-4 rounded text-white">
-                <a href="index.php?controller=proyectos&amp;action=viewMembers&amp;id=<?= $proyecto->getId() ?>">
+                <a href="index.php?controller=proyectos&amp;action=view&amp;id=<?= $proyecto->getId() ?>">
                     <div class="flex items-center space-x-2">
                         <i class="fa-regular fa-folder-open text-<?= $proyecto->getTheme() ?>"></i>
                         <span><?= $proyecto->getName() ?></span>

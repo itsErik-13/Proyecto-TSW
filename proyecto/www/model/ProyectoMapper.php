@@ -53,7 +53,6 @@ class ProyectoMapper {
 		$stmt = $this->db->prepare("SELECT * FROM projects WHERE idProject=?");
 		$stmt->execute(array($proyectoid));
 		$proyecto = $stmt->fetch(PDO::FETCH_ASSOC);
-
 		if($proyecto != null) {
 			return new Proyecto(
 			$proyecto["idProject"],
