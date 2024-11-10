@@ -34,7 +34,7 @@ $currentuser = $view->getVariable("currentusername");
 </head>
 
 <body
-    class="bg-amber-900 sm:bg-red-400 md:bg-indigo-500 lg:bg-green-400 xl:bg-fuchsia-500 2xl:bg-[#edb705] flex flex-col items-center justify-center h-screen">
+    class="bg-[#edb705] flex flex-col items-center justify-center h-screen">
     <!-- header -->
     <header>
         <a href="index.php?controller=proyectos&amp;action=index">

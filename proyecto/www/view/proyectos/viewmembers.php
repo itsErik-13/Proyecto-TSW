@@ -26,10 +26,10 @@ $view->setVariable("title", i18n("Members"));
                 <a href="index.php?controller=proyectos&amp;action=view&amp;id=<?= $proyecto->getId() ?>" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Payments") ?></a>
             </li>
             <li>
-                <a href="CHANGE" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Debts") ?></a>
+                <a href="index.php?controller=deudas&amp;action=index&amp;id=<?= $proyecto->getId() ?>" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Debts") ?></a>
             </li>
             <li>
-                <a href="CHANGE" class="text-<?=$proyecto->getTheme()?> underline"><?=i18n("Members") ?></a>
+                <a class="text-<?=$proyecto->getTheme()?> underline"><?=i18n("Members") ?></a>
             </li>
         </ul>
     </nav>

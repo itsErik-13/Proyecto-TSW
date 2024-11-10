@@ -148,7 +148,26 @@ class DebtMapper
 		$stmt->execute(array($payment->getPaymentId()));
 
 	}
-	// Cuando se elimina un proyecto se eliminan todos los miembros de ese proyecto en cascada?
-	// Y aquí con las deudas hay que hacer algo similar?
+
+	public function findTotalDebtsByProjectId($projectId) {
+		$stmt = $this->db->prepare("
+			SELECT debtorName, SUM(relativeAmount) as totalDebt
+			FROM debts
+			WHERE idProject = ?
+			GROUP BY debtorName
+		");
+		$stmt->execute(array($projectId));
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+		$debts = [];
+		foreach ($result as $row) {
+			$debts[$row['debtorName']] = $row['totalDebt'];
+		}
+	
+		return $debts;
+	}
+
+
+
 
 }

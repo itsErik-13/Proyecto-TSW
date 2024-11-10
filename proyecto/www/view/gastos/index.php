@@ -22,10 +22,10 @@ $view->setVariable("title", i18n("Payments"));
     <nav>
         <ul class="flex justify-center space-x-10 text-white text-lg font-bold">
             <li>
-                <a href="projectpagos.html" class="text-<?=$proyecto->getTheme()?> underline"><?=i18n("Payments") ?></a>
+                <a class="text-<?=$proyecto->getTheme()?> underline"><?=i18n("Payments") ?></a>
             </li>
             <li>
-                <a href="projectdeudas.html" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Debts") ?></a>
+                <a href="index.php?controller=deudas&amp;action=index&amp;id=<?= $proyecto->getId() ?>" class="hover:text-<?=$proyecto->getTheme()?>"><?=i18n("Debts") ?></a>
             </li>
             <li>
                 <a href="index.php?controller=proyectos&amp;action=viewMembers&amp;id=<?= $proyecto->getId() ?>"

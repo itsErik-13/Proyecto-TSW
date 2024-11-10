@@ -34,7 +34,7 @@ $view = ViewManager::getInstance();
 </head>
 
 <body
-	class="bg-amber-900 sm:bg-red-400 md:bg-indigo-500 lg:bg-green-400 xl:bg-fuchsia-500 2xl:bg-[#edb705] flex flex-col justify-center items-center h-screen ">
+	class="bg-[#edb705] flex flex-col justify-center items-center h-screen ">
 	<header>
 		<div class="absolute top-5 left-5 flex items-center space-x-2">
 			<img src="<?php echo '/controller/ImageController.php?image=logo.png'; ?>" alt="Logo" class="w-10 h-10">

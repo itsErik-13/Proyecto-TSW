@@ -211,4 +211,23 @@ class GastoMapper
 		return $debtors;
 	}
 
+
+	public function findTotalPaymentsByProjectId($projectId) {
+		$stmt = $this->db->prepare("
+			SELECT payerName, SUM(totalAmount) as totalPaid
+			FROM payments
+			WHERE idProject = ?
+			GROUP BY payerName
+		");
+		$stmt->execute(array($projectId));
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+		$payments = [];
+		foreach ($result as $row) {
+			$payments[$row['payerName']] = $row['totalPaid'];
+		}
+	
+		return $payments;
+	}
+
 }
