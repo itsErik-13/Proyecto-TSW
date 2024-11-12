@@ -30,8 +30,8 @@ class UserMapper {
 	* @return void
 	*/
 	public function save($user) {
-		$stmt = $this->db->prepare("INSERT INTO users values (?,?,?)");
-		$stmt->execute(array($user->getUsername(), $user->getPasswd(), $user->getEmail()));
+		$stmt = $this->db->prepare("INSERT INTO user values (?,?,?)");
+		$stmt->execute(array($user->getUserName(), $user->getEmail(), $user->getPassword()));
 	}
 
 	/**
@@ -40,9 +40,9 @@ class UserMapper {
 	* @param string $username the username to check
 	* @return boolean true if the username exists, false otherwise
 	*/
-	public function usernameExists($username) {
-		$stmt = $this->db->prepare("SELECT count(username) FROM users where username=?");
-		$stmt->execute(array($username));
+	public function usernameExists($userName) {
+		$stmt = $this->db->prepare("SELECT count(userName) FROM user where userName=?");
+		$stmt->execute(array($userName));
 
 		if ($stmt->fetchColumn() > 0) {
 			return true;
@@ -56,17 +56,22 @@ class UserMapper {
 	* @param string $passwd the password
 	* @return boolean true the username/passwrod exists, false otherwise.
 	*/
-	public function isValidUser($username, $passwd) {
-		$stmt = $this->db->prepare("SELECT count(username) FROM users where username=? and passwd=?");
-		$stmt->execute(array($username, $passwd));
+	public function isValidUser($userName, $password) {
+		$stmt = $this->db->prepare("SELECT count(userName) FROM user where userName=? and password=?");
+		$stmt->execute(array($userName, $password));
 
 		if ($stmt->fetchColumn() > 0) {
 			return true;
 		}
 	}
 
+	/**
+	 * Gives the user by the email
+	 * @param mixed $email
+	 * @return User|null the user given its email, null if none exists.
+	 */
 	public function getUserByEmail($email) {
-		$stmt = $this->db->prepare("SELECT * FROM users where email=?");
+		$stmt = $this->db->prepare("SELECT * FROM user where email=?");
 		$stmt->execute(array($email));
 
 		if ($stmt->rowCount() == 0) {
@@ -74,6 +79,6 @@ class UserMapper {
 		}
 
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);
-		return new User($user["username"], $user["passwd"], $user["email"] ,);
+		return new User($user["userName"], $user["password"], $user["email"] ,);
 	}
 }

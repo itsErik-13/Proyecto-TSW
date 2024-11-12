@@ -4,7 +4,7 @@
 /**
 * Default controller if any controller is passed in the URL
 */
-define("DEFAULT_CONTROLLER", "users");
+define("DEFAULT_CONTROLLER", "user");
 
 /**
 * Default action if any action is passed in the URL
@@ -75,7 +75,7 @@ function loadController($controllerName) {
 /**
 * Obtain the class name for a controller name in the URL
 *
-* For example $controllerName = "users" will return "UsersController"
+* For example $controllerName = "User" will return "UserController"
 *
 * @param $controllerName The name of the controller found in the URL
 * @return string The controller class name

@@ -2,16 +2,12 @@
 //file: /view/messages/messages_es.php
 $i18n_messages =
 array(
-	"Post" => "Artículo",
 	"by %s" => "por %s",
-	"Posts" => "Artículos",
 	"Title" => "Título",
 	"Contents" => "Contenido",
 	"Author" => "Autor",
 	"Actions" => "Acciones",
-	"Create post" => "Crear artículo",
 	"Hello %s" => "Hola %s",
-	"Modify post" => "Modificar artículo",
 
 	"Project \"%s\" successfully added." => "Proyecto \"%s\" añadido satisfactoriamente.",
 	"Project \"%s\" successfully updated." => "Proyecto \"%s\" modificado satisfactoriamente.",
@@ -20,6 +16,11 @@ array(
 	"Username \"%s\" successfully updated. Please login now" => "Usuario \"%s\" modificado satisfactoriamente. Por favor inicia sesión",
 	"Username \"%s\" successfully deleted. Please login now" => "Usuario \"%s\" eliminado satisfactoriamente. Por favor inicia sesión",
 	"Member \"%s\" successfully added." => "Miembro \"%s\" añadido satisfactoriamente.",
+	"Payment \"%s\" successfully added." => "Pago \"%s\" añadido satisfactoriamente.",
+	"Payment \"%s\" successfully updated." => "Pago \"%s\" modificado satisfactoriamente.",
+	"Payment \"%s\" successfully deleted." => "Pago \"%s\" eliminado satisfactoriamente.",
+
+	"There are no debts"  => "No hay deudas",
 
 	"Login" => "Iniciar sesión",
 	"Logout"=> "Cerrar sesión",
@@ -43,12 +44,13 @@ array(
 	"Add member"=> "Añadir miembro",
 	"User not found"=> "Usuario no encontrado",
 	"The user is already on the project"=> "El usuario ya pertenece al proyecto",
+	"Amount"=> "Cantidad",
+	"Subject"=> "Asunto",
+	"Users"=> "Usuarios",
 
-	"Comments" => "Comentarios",
-	"Write a comment" => "Escribe un comentario",
-	"%s commented..."=>"%s ha comentado...",
-	"Comment" => "Comentario",
-	"do comment" => "comentar",
+	"Edit payment"=> "Editar pago",
+	"Do you want to delete the payment?"=> "¿Desea elminar el pago?",
+
 	"Spanish" => "Español",
 	"English" => "Inglés",
 	"Welcome to the Blog App!" => "¡Bienvenido a la App Blog!",

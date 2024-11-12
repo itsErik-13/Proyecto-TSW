@@ -37,7 +37,7 @@ $currentuser = $view->getVariable("currentusername");
     class="bg-[#edb705] flex flex-col items-center justify-center h-screen">
     <!-- header -->
     <header>
-        <a href="index.php?controller=proyectos&amp;action=index">
+        <a href="index.php?controller=project&amp;action=index">
             <div class="absolute top-5 left-5 flex items-center space-x-2">
                 <img src="<?php echo '/controller/ImageController.php?image=logo.png'; ?>" alt="Logo" class="w-10 h-10">
                 <h1 class="text-3xl font-bold text-white">Paybuddy</h1>
@@ -47,10 +47,10 @@ $currentuser = $view->getVariable("currentusername");
         <div class="absolute top-5 right-5 flex items-center  space-x-2">
             <?php if (isset($currentuser)): ?>
                 <p class="text-white text-center"><?= sprintf($currentuser) ?></p>
-                <a href="index.php?controller=users&amp;action=logout" class="pl-2 w-10"><img
+                <a href="index.php?controller=user&amp;action=logout" class="pl-2 w-10"><img
                         src="<?php echo '/controller/ImageController.php?image=login.svg'; ?>"></a>
             <?php else: ?>
-                <a href="index.php?controller=users&amp;action=login"><?= i18n("Login") ?></a>
+                <a href="index.php?controller=user&amp;action=login"><?= i18n("Login") ?></a>
             <?php endif ?>
         </div>
     </header>

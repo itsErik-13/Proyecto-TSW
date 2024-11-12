@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../core/ValidationException.php");
 /**
  * Class User
  *
- * Represents a User in the blog
+ * Represents a User
  *
  * @author lipido <lipido@gmail.com>
  */
@@ -17,13 +17,13 @@ class User
 	 * The user name of the user
 	 * @var string
 	 */
-	private $username;
+	private $userName;
 
 	/**
 	 * The password of the user
 	 * @var string
 	 */
-	private $passwd;
+	private $password;
 
 	/**
 	 * The email of the user
@@ -31,7 +31,7 @@ class User
 	 */
 	private $email;
 
-	private $passwd2;
+	private $password2;
 
 	/**
 	 * The constructor
@@ -40,12 +40,12 @@ class User
 	 * @param string $passwd The password of the user
 	 * @param string $email The email of the user
 	 */
-	public function __construct($username = NULL, $passwd = NULL, $email = NULL, $passwd2 = NULL)
+	public function __construct($userName = NULL, $password = NULL, $email = NULL, $password2 = NULL)
 	{
-		$this->username = $username;
-		$this->passwd = $passwd;
+		$this->userName = $userName;
+		$this->password = $password;
 		$this->email = $email;
-		$this->passwd2 = $passwd2;
+		$this->password2 = $password2;
 	}
 
 	/**
@@ -53,9 +53,9 @@ class User
 	 *
 	 * @return string The username of this user
 	 */
-	public function getUsername()
+	public function getUserName()
 	{
-		return $this->username;
+		return $this->userName;
 	}
 
 	/**
@@ -64,9 +64,9 @@ class User
 	 * @param string $username The username of this user
 	 * @return void
 	 */
-	public function setUsername($username)
+	public function setUserName($userName)
 	{
-		$this->username = $username;
+		$this->userName = $userName;
 	}
 
 	/**
@@ -74,9 +74,9 @@ class User
 	 *
 	 * @return string The password of this user
 	 */
-	public function getPasswd()
+	public function getPassword()
 	{
-		return $this->passwd;
+		return $this->password;
 	}
 
 	/**
@@ -84,9 +84,9 @@ class User
 	 *
 	 * @return string The password of this user
 	 */
-	public function getPasswd2()
+	public function getPassword2()
 	{
-		return $this->passwd2;
+		return $this->password2;
 	}
 	/**
 	 * Sets the password of this user
@@ -94,9 +94,9 @@ class User
 	 * @param string $passwd The password of this user
 	 * @return void
 	 */
-	public function setPassword($passwd)
+	public function setPassword($password)
 	{
-		$this->passwd = $passwd;
+		$this->password = $password;
 	}
 
 	/**
@@ -105,9 +105,9 @@ class User
 	 * @param string $passwd The password of this user
 	 * @return void
 	 */
-	public function setPassword2($passwd2)
+	public function setPassword2($password2)
 	{
-		$this->passwd2 = $passwd2;
+		$this->password2 = $password2;
 	}
 
 	/**
@@ -143,25 +143,18 @@ class User
 	public function checkIsValidForRegister()
 	{
 		$errors = array();
-		if (strlen($this->username) < 4) {
-			$errors["username"] = "Username must be at least 4 characters length";
-
+		if (strlen($this->userName) < 4) {
+			$errors["userName"] = "Username must be at least 4 characters length";
 		}
-		if (strlen($this->passwd) < 4) {
-			$errors["passwd"] = "Password must be at least 4 characters length";
+		if (strlen($this->password) < 4) {
+			$errors["password"] = "Password must be at least 4 characters length";
 		}if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
 			$errors["email"] = "Email must be valid";
-		}if ($this->passwd2 != $this->passwd) {
-			$errors["passwd2"] = "Passwords must match";
+		}if ($this->password2 != $this->password) {
+			$errors["password2"] = "Passwords must match";
 		}
 		if (sizeof($errors) > 0) {
 			throw new ValidationException($errors, "User is not valid");
 		}
 	}
 }
-
-
-
-
-
-// TODO -> email validation
