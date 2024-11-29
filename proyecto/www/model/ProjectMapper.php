@@ -77,7 +77,7 @@ class ProjectMapper {
             $id = $this->db->lastInsertId();
             $stmt = $this->db->prepare("INSERT INTO member (idProject, userName) values (?,?)");
             $stmt->execute(array($id, $user->getUserName()));
-			return $this->db->lastInsertId();
+			return $id;
 		}
 
 		/**
