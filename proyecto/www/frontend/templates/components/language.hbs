@@ -1,4 +1,16 @@
-<ul>
-  <li><a href="#{{currentPage}}" id="englishlink">{{i18n 'English'}}</a></li>
-  <li><a href="#{{currentPage}}" id="spanishlink">{{i18n 'Spanish'}}</a></li>
+<ul id="languagechooser" class="list-none flex flex-wrap items-center justify-center text-gray-900 dark:text-white">
+	<li><button class="p-2 flex flex-row items-center border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none">
+    <a href="#{{currentPage}}" id="englishlink">
+			<span class="text-md">Es</span>
+			<span class="ml-1"> <img src="../../icons/spain.png"
+					class="w-5 h-5" /></span>
+    </a>
+		</button></li>
+	<li><button class="p-2 flex flex-row items-center border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none">
+    <a href="#{{currentPage}}" id="spanishlink">
+      <span class="text-md">En</span>
+			<span class="ml-1"> <img src="../../icons/united-kingdom.png" class="w-5 h-5" /></span>
+    </a>
+			
+		</button></li>
 </ul>
