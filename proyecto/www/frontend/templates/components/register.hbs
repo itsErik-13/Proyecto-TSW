@@ -1,0 +1,100 @@
+<div class="flex flex-col justify-center items-center h-full w-full">
+  {{#if isLogged}}
+    {{i18n "Your are logged. Logout first"}}
+  {{else}}
+
+    <div
+      class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-sm w-full h text-white"
+      id="registerform"
+    >
+      <h2 class="text-3xl font-bold text-white text-center mb-6">{{i18n
+          "Register"
+        }}</h2>
+      <div class="space-y-4 text-[#fff] max-w-md mx-auto">
+        <div class="relative flex items-center">
+          <input
+            type="text"
+            name="username"
+            id="registerusername"
+            placeholder="{{i18n 'Username'}}"
+            class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+            value=""
+          />
+          <div class="absolute right-4 flex items-centerpointer-events-none">
+            <i class="fa-regular fa-user text-gray-300"></i>
+          </div>
+        </div>
+        <p class="text-red-600 inline">{{#i18n
+          }}{{registerErrors.username}}{{/i18n}}</p>
+
+        <div class="relative flex items-center">
+          <input
+            type="email"
+            name="email"
+            id="registeremail"
+            placeholder="{{i18n 'Email'}}"
+            class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+            value=""
+          />
+          <div class="absolute right-4 flex items-centerpointer-events-none">
+            <i class="fa-regular fa-envelope text-gray-300"></i>
+          </div>
+        </div>
+        <p class="text-red-600 inline">{{#i18n
+          }}{{registerErrors.email}}{{/i18n}}</p>
+
+        <div class="relative flex items-center">
+          <input
+            type="password"
+            name="password"
+            id="registerpassword"
+            placeholder="{{i18n 'Password'}}"
+            class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+            value=""
+          />
+          <div class="absolute right-4 flex items-centerpointer-events-none">
+            <i class="fa-regular fa-eye text-gray-300"></i>
+          </div>
+        </div>
+        <p class="text-red-600 inline">{{#i18n
+          }}{{registerErrors.passwd}}{{/i18n}}</p>
+
+        <div class="relative flex items-center">
+          <input
+            type="password"
+            name="password2"
+            id="registerpassword2"
+            placeholder="{{i18n 'Repeat password'}}"
+            class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+            value=""
+          />
+          <div class="absolute right-4 flex items-centerpointer-events-none">
+            <i class="fa-regular fa-eye text-gray-300"></i>
+          </div>
+        </div>
+        <p class="text-red-600 inline">{{#i18n
+          }}{{registerErrors.passwd}}{{/i18n}}</p>
+
+        <div class="relative flex items-centerpointer-events-none">
+          <button
+            type="submit"
+            id="registerbutton"
+            class="absolute right-0 px-3 py-3 bg-[#edb705] hover:bg-[#ab8403] text-white rounded-lg active:bg-[#006bff]"
+          ><img
+              src="<?php echo '/controller/ImageController.php?image=login.svg'; ?>"
+            /></button>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        {{i18n "Already have an account?"}}
+        <a
+          href="#register"
+          id="loginlink"
+          class="text-yellow-400 hover:text-yellow-500 text-sm underline"
+        >{{i18n "Login Here!"}}</a>
+      </div>
+
+    </div>
+  {{/if}}
+</div>

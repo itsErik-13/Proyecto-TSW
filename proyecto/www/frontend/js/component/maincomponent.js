@@ -25,6 +25,10 @@ class MainComponent extends Fronty.RouterComponent {
         component: new PostAddComponent(this.postsModel, this.userModel, this),
         title: 'Add Post'
       },
+      register: {
+        component: new RegisterComponent(this.userModel, this),
+        title: 'Register'
+      },
       login: {
         component: new LoginComponent(this.userModel, this),
         title: 'Login'

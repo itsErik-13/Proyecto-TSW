@@ -21,8 +21,7 @@ class LoginComponent extends Fronty.ModelComponent {
 
     this.addEventListener('click', '#registerlink', () => {
       this.userModel.set(() => {
-        this.userModel.registerMode = true;
-        document.getElementById('loginform').style.display = 'none';
+        this.router.goToPage('register');
       });
     });
 

@@ -33,6 +33,8 @@ Promise.all([
       Handlebars.templates.user = Handlebars.compile(source)),
     loadTextFile('templates/components/login.hbs').then((source) =>
       Handlebars.templates.login = Handlebars.compile(source)),
+    loadTextFile('templates/components/register.hbs').then((source) =>
+      Handlebars.templates.register = Handlebars.compile(source)),
     loadTextFile('templates/components/posts-table.hbs').then((source) =>
       Handlebars.templates.poststable = Handlebars.compile(source)),
     loadTextFile('templates/components/post-edit.hbs').then((source) =>
