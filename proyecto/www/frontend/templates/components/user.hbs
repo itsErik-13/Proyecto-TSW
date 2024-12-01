@@ -1,8 +1,9 @@
-<div class="absolute top-5 right-5 flex items-center  space-x-2 text-white">
+<div class="absolute top-5 right-5 flex items-center space-x-2 text-white">
   {{#if isLogged}}
-    {{i18n 'Hello'}} {{currentUser}}
-    <input type="button" id='logoutbutton' class="cursor-pointer" value=" {{i18n 'logout'}}"></input>
+    <p class="text-white text-center">{{currentUser}}</p>
+                <a id="logoutbutton" href="index.php?controller=user&amp;action=logout" class="pl-2 w-10"><img
+                        src="icons/logout.svg"></a>
   {{else}}
-    <a href='#login'>{{i18n 'Login'}}</a>
+    <a href="#login">{{i18n "Login"}}</a>
   {{/if}}
 </div>
