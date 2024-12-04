@@ -8,7 +8,7 @@ class LoginComponent extends Fronty.ModelComponent {
     this.addEventListener('click', '#loginbutton', (event) => {
       this.userService.login($('#login').val(), $('#password').val())
         .then(() => {
-          this.router.goToPage('posts');
+          this.router.goToPage('projects');
           this.userModel.setLoggeduser($('#login').val());
         })
         .catch((error) => {

@@ -7,11 +7,17 @@ class MainComponent extends Fronty.RouterComponent {
     this.userModel = new UserModel();
     this.postsModel = new PostsModel();
     this.userService = new UserService();
+    this.projectsModel = new ProjectsModel();
+    
 
     super.setRouterConfig({
       posts: {
         component: new PostsComponent(this.postsModel, this.userModel, this),
         title: 'Posts'
+      },
+      projects: {
+        component: new ProjectsComponent(this.projectsModel, this.userModel, this),
+        title: 'Projects'
       },
       'view-post': {
         component: new PostViewComponent(this.postsModel, this.userModel, this),
