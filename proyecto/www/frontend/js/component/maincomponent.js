@@ -9,7 +9,7 @@ class MainComponent extends Fronty.RouterComponent {
     this.userService = new UserService();
     this.projectsModel = new ProjectsModel();
     
-
+    
     super.setRouterConfig({
       posts: {
         component: new PostsComponent(this.postsModel, this.userModel, this),
@@ -70,6 +70,7 @@ class MainComponent extends Fronty.RouterComponent {
     userbar.addEventListener('click', '#logoutbutton', () => {
       this.userModel.logout();
       this.userService.logout();
+      this.goToPage('login');
     });
 
     return userbar;

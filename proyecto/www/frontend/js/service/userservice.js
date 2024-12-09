@@ -56,7 +56,9 @@ class UserService {
     window.sessionStorage.removeItem('login');
     window.sessionStorage.removeItem('pass');
     $.ajaxSetup({
-      beforeSend: (xhr) => {}
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader("Authorization", "");
+      }
     });
   }
 

@@ -41,12 +41,17 @@ class ProjectsComponent extends Fronty.ModelComponent {
   }
 
   updateProjects() {
-    this.projectsService.getProjects().then((data) => {      
-      this.projectsModel.setProjects(
-        data.map(
-          (item) => new ProjectModel(item.idProject, item.projectName, item.theme)
-      ));      
-    })
+    if (this.userModel.isLogged){
+      this.projectsService.getProjects().then((data) => {      
+        this.projectsModel.setProjects(
+          data.map(
+            (item) => new ProjectModel(item.idProject, item.projectName, item.theme)
+        ));      
+      })
+    }else{
+      this.router.goToPage('login');
+    }
+    
   }
 
   // Override

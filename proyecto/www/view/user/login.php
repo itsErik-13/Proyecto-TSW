@@ -41,5 +41,4 @@ $user = $view->getVariable("user");
         <a href="index.php?controller=user&amp;action=register"
             class="text-yellow-400 hover:text-yellow-500 text-sm underline"><?= i18n("Register here!") ?></a>
     </div>
-    
 </div>
