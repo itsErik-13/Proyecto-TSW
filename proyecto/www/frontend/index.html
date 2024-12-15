@@ -60,43 +60,7 @@
     <div id="frontyapp">
         Loading app, please wait...
     </div>
-    <script type="module">
-        function reinitializeModal(hash) {
-            // Esperar hasta que el modal esté en el DOM
-            const waitForModal = () => {
-                const modalElement = document.querySelector('.modal');
-                console.log(modalElement);
-                if (modalElement) {
-
-                    // Re-inicializa los atributos y eventos necesarios
-                    initFlowbite();
-                    console.log('Modal reinitialized on ' + hash);
-                } else {
-                    // Volver a intentar después de un breve retardo
-                    setTimeout(waitForModal, 50); // 50ms de retardo
-                }
-            };
-
-            waitForModal();
-        }
-
-        // Detecta cambios en el hash
-        window.addEventListener('hashchange', () => {
-            console.log('Hash changed to:', location.hash);
-            setTimeout(() => {
-                reinitializeModal(location.hash);  
-              }, 300);
-              
-        });
-
-        // Inicializa al cargar la página
-        document.addEventListener('DOMContentLoaded'
-        , () => {
-            setTimeout(() => {
-                reinitializeModal(location.hash);  
-              }, 300);
-        });
-    </script>
+    
 </body>
 
 </html>

@@ -12,23 +12,20 @@ class ProjectsComponent extends Fronty.ModelComponent {
 
     this.projectsService = new ProjectsService();
 
-    this.addEventListener('click', '#savebutton', () => {
+    this.addEventListener('click', '#addProject', () => {
       var newProject = {};
-      newPost.title = $('#title').val();
-      newPost.content = $('#content').val();
-      newPost.author_id = this.userModel.currentUser;
-      this.postsService.addPost(newPost)
+      newProject.projectName = $('#projectName').val();
+      newProject.theme = document.querySelector('input[name="theme"]:checked').value;
+      console.log(newProject);
+      
+      this.projectsService.createProject(newProject)
         .then(() => {
-          this.router.goToPage('posts');
+          this.updateProjects();
         })
-        .fail((xhr, errorThrown, statusText) => {
-          if (xhr.status == 400) {
-            this.postsModel.set(() => {
-              this.postsModel.errors = xhr.responseJSON;
-            });
-          } else {
-            alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
-          }
+        .catch((error) => {
+          this.projectsModel.set((model) => {
+            model.projectError = error.responseText;
+          });
         });
     });
     
@@ -36,7 +33,6 @@ class ProjectsComponent extends Fronty.ModelComponent {
 
   onStart() {
     console.log('ProjectsComponent onStart');
-    
     this.updateProjects();
   }
 
@@ -47,11 +43,13 @@ class ProjectsComponent extends Fronty.ModelComponent {
           data.map(
             (item) => new ProjectModel(item.idProject, item.projectName, item.theme)
         ));      
-      })
+      });
+      setTimeout(() => {
+        initFlowbite(); // Se ejecuta después de un pequeño retraso para asegurar que el DOM esté listo
+    }, 0);
     }else{
       this.router.goToPage('login');
     }
-    
   }
 
   // Override
@@ -70,24 +68,19 @@ class ProjectRowComponent extends Fronty.ModelComponent {
     this.addModel('user', userModel); // a secondary model
     
     this.router = router;
+    this.addEventListener('click', '.deleteProject', (event) => {
+        var projectId = event.target.getAttribute('item');
+        console.log(projectId);
+        this.projectsComponent.projectsService.deleteProject(projectId)
+          .fail(() => {
+            alert('project cannot be deleted')
+          })
+          .always(() => {
+            this.projectsComponent.updateProjects();
+          });
+    });
 
-    // this.addEventListener('click', '.remove-button', (event) => {
-    //   if (confirm(I18n.translate('Are you sure?'))) {
-    //     var postId = event.target.getAttribute('item');
-    //     this.postsComponent.postsService.deletePost(postId)
-    //       .fail(() => {
-    //         alert('post cannot be deleted')
-    //       })
-    //       .always(() => {
-    //         this.postsComponent.updatePosts();
-    //       });
-    //   }
-    // });
-
-    // this.addEventListener('click', '.edit-button', (event) => {
-    //   var postId = event.target.getAttribute('item');
-    //   this.router.goToPage('edit-post?id=' + postId);
-    // });
+    
   }
 
 }
