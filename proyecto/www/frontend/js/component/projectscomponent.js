@@ -42,11 +42,9 @@ class ProjectsComponent extends Fronty.ModelComponent {
         this.projectsModel.setProjects(
           data.map(
             (item) => new ProjectModel(item.idProject, item.projectName, item.theme)
-        ));      
+        ));   
+        initFlowbite();
       });
-      setTimeout(() => {
-        initFlowbite(); // Se ejecuta después de un pequeño retraso para asegurar que el DOM esté listo
-    }, 0);
     }else{
       this.router.goToPage('login');
     }
