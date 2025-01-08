@@ -310,6 +310,26 @@ class ProjectRest extends BaseRest
 		}
 	}
 
+	public function getProject($idProject){
+		$currentUser = parent::authenticateUser();
+		$project = $this->projectMapper->findByIdProject($idProject); // El id proyect se saca del $data o del $uri?
+		json_encode($project);
+
+		if ($project == NULL) {
+			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request'); // Alomejor debería ser 404?
+			echo ("Project with id " . $idProject . " not found");
+			return;
+		}
+
+		header($_SERVER['SERVER_PROTOCOL'] . ' 200 Ok');
+		header('Content-Type: application/json');
+		echo (json_encode(array(
+			"idProject" => $project->getIdProject(),
+			"projectName" => $project->getProjectName(),
+			"theme" => $project->getTheme()
+		)));
+	}
+
 }
 
 // URI-MAPPING for this Rest endpoint
@@ -324,7 +344,8 @@ URIDispatcher::getInstance()
 	->map("DELETE", "/project/$1/payment/$2", array($projectRest, "deletePayment")) 						//checked
 	->map("GET", "/project/$1/debt", array($projectRest, "getDebts"))										//checked
 	->map("GET", "/project/$1/member", array($projectRest, "getMembers"))									//checked
-	->map("POST", "/project/$1/member", array($projectRest, "addMember"));									//checked
+	->map("POST", "/project/$1/member", array($projectRest, "addMember"))									//checked
+	->map("GET", "/project/$1", array($projectRest, "getProject"));
 
 
 

@@ -39,6 +39,8 @@ Promise.all([
       Handlebars.templates.poststable = Handlebars.compile(source)),
     loadTextFile('templates/components/post-edit.hbs').then((source) =>
       Handlebars.templates.postedit = Handlebars.compile(source)),
+    loadTextFile('templates/components/payment-row.hbs').then((source) =>
+      Handlebars.templates.paymentrow = Handlebars.compile(source)),
     loadTextFile('templates/components/post-view.hbs').then((source) =>
       Handlebars.templates.postview = Handlebars.compile(source)),
     loadTextFile('templates/components/post-row.hbs').then((source) =>
@@ -46,7 +48,9 @@ Promise.all([
     loadTextFile('templates/components/projectstable.hbs').then((source) =>
       Handlebars.templates.projectstable = Handlebars.compile(source)),
     loadTextFile('templates/components/project-row.hbs').then((source) =>
-      Handlebars.templates.projectrow = Handlebars.compile(source))
+      Handlebars.templates.projectrow = Handlebars.compile(source)),
+    loadTextFile('templates/components/project-view.hbs').then((source) =>
+      Handlebars.templates.projectview = Handlebars.compile(source)),
     
   ])
   .then(() => {

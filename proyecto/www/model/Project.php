@@ -54,6 +54,16 @@ class Project {
 	}
 
 	/**
+	* Sets the id of this project
+	*
+	* @return void
+	*/
+	public function setIdProject($projectId) {
+		$this->idProject = $projectId;
+	}
+
+
+	/**
 	* Gets the name of this project
 	*
 	* @return string The name of this project

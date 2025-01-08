@@ -1,0 +1,43 @@
+<div class="flex flex-col justify-center items-center h-full w-full">
+    <div class="bg-[#323231] rounded-lg p-4 shadow-lg max-w-4xl w-full text-center">
+        <h2 class="text-3xl font-bold text-white mb-6">{{selectedProject.projectName}}</h2>
+
+        <nav>
+            <ul class="flex justify-center space-x-10 text-white text-lg font-bold">
+                <li>
+                    <a href="" class="text-{{selectedProject.theme}} underline">{{i18n "Payments"}}</a>
+                </li>
+                <li>
+                    <a href="" class="hover:text-{{selectedProject.theme}}">{{i18n "Debts"}}</a>
+                </li>
+                <li>
+                    <a href="#view-members?idProject={{idProject}}" class="hover:text-{{selectedProject.theme}}>">{{i18n "Members"}}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+<div class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-4xl w-full text-center mt-2">
+    <!-- Lista de pagos -->
+    <div
+        class="space-y-4 overflow-y-auto max-h-[320px] pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full">
+        {{#if payments.length}}
+            {{#each payments}}
+                <div
+                    fronty-component="PaymentRowComponent"
+                    key="{{idPayment}}"
+                    model="payments[{{@index}}]"
+                    id="payment-{{idPayment}}"
+                ></div>
+            {{/each}}       
+      {{/if}}
+    </div>
+    {{!-- <!-- Botón añadir nuevo pago -->
+    <div class="flex justify-center mt-4">
+        <a href="index.php?controller=payment&amp;action=add&amp;idProject=<?= $project->getIdProject() ?>">
+            <button class="px-4 py-2 bg-[#edb705] hover:bg-[#ab8403] text-white rounded-lg">
+                <i class="fa-solid fa-money-bill-1-wave"></i>
+            </button>
+        </a>
+    </div> --}}
+</div>
+</div>

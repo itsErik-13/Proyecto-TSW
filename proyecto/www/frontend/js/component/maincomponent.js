@@ -8,6 +8,7 @@ class MainComponent extends Fronty.RouterComponent {
     this.postsModel = new PostsModel();
     this.userService = new UserService();
     this.projectsModel = new ProjectsModel();
+    this.paymentsModel = new PaymentsModel();
     
     
     super.setRouterConfig({
@@ -23,6 +24,14 @@ class MainComponent extends Fronty.RouterComponent {
         component: new PostViewComponent(this.postsModel, this.userModel, this),
         title: 'Post'
       },
+      'view-project': {
+        component: new ProjectViewComponent(this.projectsModel, this.userModel, this),
+        title: 'Project'
+      },
+      // 'view-member': {
+      //   component: new MemberViewComponent(this.projectsModel, this.userModel, this),
+      //   title: 'Member'
+      // },
       'edit-post': {
         component: new PostEditComponent(this.postsModel, this.userModel, this),
         title: 'Edit Post'

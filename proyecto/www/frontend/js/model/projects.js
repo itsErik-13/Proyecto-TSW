@@ -13,6 +13,12 @@ class ProjectsModel extends Fronty.Model {
     });
   }
 
+  setPayments(payments) {
+    this.set((self) => {
+      self.payments = payments;
+    });
+  }
+
   setProjects(projects) {
     this.set((self) => {
       self.projects = projects;

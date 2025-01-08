@@ -69,4 +69,8 @@ class ProjectsService {
     });
   }
 
+  getProject(idProject) {
+    return $.get(AppConfig.backendServer + '/rest/project/' + idProject);
+  }
+
 }
