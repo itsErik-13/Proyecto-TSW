@@ -28,10 +28,10 @@ class MainComponent extends Fronty.RouterComponent {
         component: new ProjectViewComponent(this.projectsModel, this.userModel, this),
         title: 'Project'
       },
-      // 'view-member': {
-      //   component: new MemberViewComponent(this.projectsModel, this.userModel, this),
-      //   title: 'Member'
-      // },
+      'view-members': {
+        component: new MemberViewComponent(this.projectsModel, this.userModel, this),
+        title: 'Member'
+      },
       'edit-post': {
         component: new PostEditComponent(this.postsModel, this.userModel, this),
         title: 'Edit Post'
@@ -43,6 +43,10 @@ class MainComponent extends Fronty.RouterComponent {
       'add-payment': {
         component: new PaymentAddComponent(this.projectsModel, this.userModel, this),
         title: 'Add Payment'
+      },
+      'add-member': {
+        component: new MemberAddComponent(this.projectsModel, this.userModel, this),
+        title: 'Add Member'
       },
       register: {
         component: new RegisterComponent(this.userModel, this),

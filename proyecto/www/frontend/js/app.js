@@ -53,6 +53,10 @@ Promise.all([
       Handlebars.templates.projectview = Handlebars.compile(source)),
     loadTextFile('templates/components/payment-add.hbs').then((source) =>
       Handlebars.templates.paymentadd = Handlebars.compile(source)),
+    loadTextFile('templates/components/member-view.hbs').then((source) =>
+      Handlebars.templates.memberview = Handlebars.compile(source)),
+    loadTextFile('templates/components/member-add.hbs').then((source) =>
+      Handlebars.templates.memberadd = Handlebars.compile(source)),
     
   ])
   .then(() => {

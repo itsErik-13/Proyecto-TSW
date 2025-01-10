@@ -33,25 +33,9 @@ class PaymentAddComponent extends Fronty.ModelComponent {
           }
         });
       })
-
-      // newPost.author_id = this.userModel.currentUser;
-      // this.postsService.addPost(newPost)
-      //   .then(() => {
-      //     this.router.goToPage('posts');
-      //   })
-      //   .fail((xhr, errorThrown, statusText) => {
-      //     if (xhr.status == 400) {
-      //       this.postsModel.set(() => {
-      //         this.postsModel.errors = xhr.responseJSON;
-      //       });
-      //     } else {
-      //       alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
-      //     }
-      //   });
   }
 
   onStart() {
-    console.log('PaymentAddComponent onStart');
     var selectedId = this.router.getRouteQueryParam('idProject');
     this.loadProject(selectedId);
     this.setMembers(selectedId);

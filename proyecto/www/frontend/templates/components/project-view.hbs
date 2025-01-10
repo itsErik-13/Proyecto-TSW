@@ -5,13 +5,13 @@
         <nav>
             <ul class="flex justify-center space-x-10 text-white text-lg font-bold">
                 <li>
-                    <a href="" class="text-{{selectedProject.theme}} underline">{{i18n "Payments"}}</a>
+                    <a href="#view-project?idProject={{selectedProject.idProject}}" class="text-{{selectedProject.theme}} underline">{{i18n "Payments"}}</a>
                 </li>
                 <li>
                     <a href="" class="hover:text-{{selectedProject.theme}}">{{i18n "Debts"}}</a>
                 </li>
                 <li>
-                    <a href="#view-members?idProject={{idProject}}" class="hover:text-{{selectedProject.theme}}>">{{i18n "Members"}}</a>
+                    <a href="#view-members?idProject={{selectedProject.idProject}}" class="hover:text-{{selectedProject.theme}}>">{{i18n "Members"}}</a>
                 </li>
             </ul>
         </nav>

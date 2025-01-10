@@ -5,13 +5,13 @@
         <nav>
             <ul class="flex justify-center space-x-10 text-white text-lg font-bold">
                 <li>
-                    <a href="" class="text-{{selectedProject.theme}} underline">{{i18n "Payments"}}</a>
+                    <a href="#view-project?idProject={{selectedProject.idProject}}" class="hover:text-{{selectedProject.theme}}">{{i18n "Payments"}}</a>
                 </li>
                 <li>
                     <a href="" class="hover:text-{{selectedProject.theme}}">{{i18n "Debts"}}</a>
                 </li>
                 <li>
-                    <a href="#view-members?idProject={{idProject}}" class="hover:text-{{selectedProject.theme}}>">{{i18n "Members"}}</a>
+                    <a href="#view-members?idProject={{selectedProject.idProject}}" class="text-{{selectedProject.theme}} underline">{{i18n "Members"}}</a>
                 </li>
             </ul>
         </nav>
@@ -20,22 +20,17 @@
     <!-- Lista de pagos -->
     <div
         class="space-y-4 overflow-y-auto max-h-[320px] pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full">
-        {{#if payments.length}}
-            {{#each payments}}
-                <div
-                    fronty-component="PaymentRowComponent"
-                    key="{{idPayment}}"
-                    model="payments[{{@index}}]"
-                    id="payment-{{idPayment}}"
-                ></div>
-            {{/each}}       
-      {{/if}}
+        {{#each selectedProject.members}}
+            <div class="flex flex-col justify-between bg-[#3d3d3d] p-4 rounded text-white space-y-2">
+                <h1 class="text-xl font-bold text-white">{{this.username}}</h1>
+            </div>
+        {{/each}}
     </div>
-    <!-- Botón añadir nuevo pago -->
+    <!-- Botón añadir nuevo miembro -->
     <div class="flex justify-center mt-4">
-        <a href="#add-payment?idProject={{selectedProject.idProject}}"> 
+        <a href="#add-member?idProject={{selectedProject.idProject}}"> 
             <button class="px-4 py-2 bg-[#edb705] hover:bg-[#ab8403] text-white rounded-lg">
-                <i class="fa-solid fa-money-bill-1-wave"></i>
+                <i class="fa-solid fa-user-plus"></i>
             </button>
         </a>
     </div>

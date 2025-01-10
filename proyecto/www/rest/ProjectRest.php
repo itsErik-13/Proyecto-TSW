@@ -297,7 +297,12 @@ class ProjectRest extends BaseRest
 			echo ("Project with id " . $idProject . " not found");
 			return;
 		}
-
+		if($this->userMapper->getUserByEmail($data->email) == NULL){
+			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request');
+			echo ("User with email " . $data->email . " not found");
+			return;
+			
+		}
 		if ($this->projectMapper->canAddMember($project, $this->userMapper->getUserByEmail($data->email)) == false) {
 			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request');
 			echo ("Member is already in the project");
