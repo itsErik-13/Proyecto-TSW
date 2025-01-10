@@ -24,4 +24,11 @@ class ProjectsModel extends Fronty.Model {
       self.projects = projects;
     });
   }
+
+  setMembers(members) {
+    this.set((self) => {
+      self.selectedProject.members = members;
+      console.log('members: ' + JSON.stringify(members));
+    });
+  }
 }

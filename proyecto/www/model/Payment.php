@@ -179,19 +179,19 @@ class Payment
     {
         $errors = array();
         if (strlen(trim($this->payerName)) == 0) {
-            $errors["payerName"] = i18n("Payer id is mandatory");
+            $errors["payerName"] = "Payer id is mandatory";
         }
         if (strlen(trim($this->idProject)) == 0) {
-            $errors["idProject"] = i18n("Project id is mandatory");
+            $errors["idProject"] = "Project id is mandatory";
         }
         if (!is_numeric(trim($this->totalAmount))) {
-            $errors["totalAmount"] = i18n("Total amount should be a number");
+            $errors["totalAmount"] = "Total amount should be a number";
         }
         if (strlen(trim($this->totalAmount)) == 0 || strlen(trim($this->totalAmount)) > 10) {
-            $errors["totalAmount"] = i18n("Between 1-10 characters");
+            $errors["totalAmount"] = "Between 1-10 characters";
         }
         if (sizeof($errors) > 0) {
-            throw new ValidationException($errors, i18n("Payment is not valid"));
+            throw new ValidationException($errors, "Payment is not valid");
         }
     }
 

@@ -27,16 +27,16 @@
       ></i>
       <div class="flex items-center space-x-4">
         <button
-          data-modal-target="modal-viewmemberspayment<?= $payment->getIdPayment() ?>"
-          data-modal-toggle="modal-viewmemberspayment<?= $payment->getIdPayment() ?>"
+          data-modal-target="modal-viewmemberspayment{{idPayment}}"
+          data-modal-toggle="modal-viewmemberspayment{{idPayment}}"
           class="text-white hover:text-yellow-400"
           type="button"
         >
           <p class="underline">{{debtors.length}} usuarios</p>
         </button>
         <button
-          data-modal-target="modal-deletepayment<?= $payment->getIdPayment() ?>"
-          data-modal-toggle="modal-deletepayment<?= $payment->getIdPayment() ?>"
+          data-modal-target="modal-deletepayment-{{idPayment}}"
+          data-modal-toggle="modal-deletepayment-{{idPayment}}"
           class="text-white hover:text-red-500"
           type="button"
         >
@@ -47,7 +47,7 @@
   </div>
 
   <div
-    id="modal-viewmemberspayment<?= $payment->getIdPayment() ?>"
+    id="modal-viewmemberspayment{{idPayment}}"
     tabindex="-1"
     aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -72,7 +72,7 @@
             <button
               type="button"
               class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-toggle="modal-viewmemberspayment<?= $payment->getIdPayment() ?>"
+              data-modal-toggle="modal-viewmemberspayment{{idPayment}}"
             >
               <svg
                 class="w-3 h-3"
@@ -109,7 +109,7 @@
   </div>
 
   <div
-    id="modal-deletepayment<?= $payment->getIdPayment() ?>"
+    id="modal-deletepayment-{{idPayment}}"
     tabindex="-1"
     aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -134,7 +134,7 @@
             <button
               type="button"
               class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-toggle="modal-deletepayment<?= $payment->getIdPayment() ?>"
+              data-modal-toggle="modal-deletepayment-{{idPayment}}"
             >
               <svg
                 class="w-3 h-3"
@@ -163,7 +163,7 @@
           <button
             idProject="{{idProject}}"
             idPayment="{{idPayment}}"
-            data-modal-toggle="modal-deleteProject-{{idProject}}"
+            data-modal-toggle="modal-deletepayment-{{idPayment}}"
             class="deletePayment text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           ><i class="fa-solid fa-trash"></i></button>
         </div>

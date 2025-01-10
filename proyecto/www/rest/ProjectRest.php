@@ -138,7 +138,7 @@ class ProjectRest extends BaseRest
 	{
 		$currentUser = parent::authenticateUser();
 		$payment = new Payment();
-
+		
 		if (isset($data->payerName) && isset($data->totalAmount) && isset($data->subject) && isset($data->debtors)) {
 			$payment->setIdProject(idProject: $idProject);
 			$payment->setPayerName($data->payerName);
@@ -150,6 +150,8 @@ class ProjectRest extends BaseRest
 		try {
 			// validate Payment object
 			$payment->checkIsValidForCreate(); // if it fails, ValidationException
+			
+			//die(is_numeric($data->totalAmount()));
 			// save the Payment object into the database
 			$idPayment = $this->paymentMapper->save($payment);
 

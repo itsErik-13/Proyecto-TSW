@@ -27,7 +27,7 @@ class ProjectsService {
     return $.get(AppConfig.backendServer+'/rest/project/' + idProject + '/payment');
   }
 
-  createPayment(idProject, payment) {
+  createPayment(idProject, payment) {    
     return $.ajax({
       url: AppConfig.backendServer+'/rest/project/' + idProject + '/payment',
       method: 'POST',

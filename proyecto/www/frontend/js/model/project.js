@@ -1,6 +1,6 @@
 class ProjectModel extends Fronty.Model {
 
-  constructor(idProject, projectName, theme) {
+  constructor(idProject, projectName, theme, members) {
     super('ProjectModel'); //call super
     
     if (idProject) {
@@ -14,6 +14,10 @@ class ProjectModel extends Fronty.Model {
     if (theme) {
       this.theme = theme;
     }
+
+    if (members) {
+      this.members = members;
+    }
   }
 
   setName(projectName) {
@@ -25,6 +29,12 @@ class ProjectModel extends Fronty.Model {
   setTheme(theme) {
     this.set((self) => {
       self.theme = theme;
+    });
+  }
+
+  setMembers(members) {
+    this.set((self) => {
+      self.members = members;
     });
   }
 }
