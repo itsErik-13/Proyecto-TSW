@@ -15,6 +15,7 @@ class MemberAddComponent extends Fronty.ModelComponent {
 
         this.projectsService.addMember(this.projectsModel.selectedProject.idProject, newMember)
           .then(() => {
+            this.projectsModel.memberErrors = null;
             window.location.hash = '#view-members?idProject=' + this.projectsModel.selectedProject.idProject;
           }).fail((xhr, errorThrown, statusText) => {
             if (xhr.status == 400) {
