@@ -30,4 +30,16 @@ class ProjectsModel extends Fronty.Model {
       self.selectedProject.members = members;
     });
   }
+
+  setSelectedPayment(payment) {
+    this.set((self) => {
+      self.selectedPayment = payment;
+    });
+  }
+
+  setDebts(debts) {
+    this.set((self) => {
+      self.debts = debts;
+    });
+  }
 }

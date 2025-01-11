@@ -48,6 +48,14 @@ class MainComponent extends Fronty.RouterComponent {
         component: new MemberAddComponent(this.projectsModel, this.userModel, this),
         title: 'Add Member'
       },
+      'edit-payment': {
+        component: new PaymentEditComponent(this.projectsModel, this.userModel, this),
+        title: 'Edit Payment'
+      },
+      'view-debt': {
+        component: new DebtViewComponent(this.projectsModel, this.userModel, this),
+        title: 'Debts'
+      }, 
       register: {
         component: new RegisterComponent(this.userModel, this),
         title: 'Register'

@@ -36,7 +36,7 @@ $view->setVariable("title", i18n("Debts"));
     </ul>
   </nav>
 </div>
-<div class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-4xl w-full text-center mt-5">
+<div class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-4xl w-full text-center mt-2">
   <!-- Lista de deudas -->
   <div
     class="space-y-4 overflow-y-auto max-h-[320px] pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full">

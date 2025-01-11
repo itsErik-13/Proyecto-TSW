@@ -22,6 +22,7 @@ class PaymentAddComponent extends Fronty.ModelComponent {
 
       this.projectsService.createPayment(this.projectsModel.selectedProject.idProject, newPayment)
         .then(() => {
+          this.projectsModel.paymentErrors = null;
           window.location.hash = '#view-project?idProject=' + this.projectsModel.selectedProject.idProject;
         }).fail((xhr, errorThrown, statusText) => {
           if (xhr.status == 400) {

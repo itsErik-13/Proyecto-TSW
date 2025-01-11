@@ -134,6 +134,29 @@ class ProjectRest extends BaseRest
 		echo (json_encode($payments_array));
 	}
 
+	public function getPayment($idProject, $idPayment)
+	{
+		$currentUser = parent::authenticateUser();
+		$payment = $this->paymentMapper->findByIdWithDebtors($idPayment,$idProject); // El id proyect se saca del $data o del $uri?
+
+		if ($payment == NULL) {
+			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request'); 
+			echo ("Payment with id " . $idPayment . " not found");
+			return;
+		}
+
+		header($_SERVER['SERVER_PROTOCOL'] . ' 200 Ok');
+		header('Content-Type: application/json');
+		echo (json_encode(array(
+			"idPayment" => $payment->getIdPayment(),
+			"idProject" => $payment->getIdProject(),
+			"payerName" => $payment->getPayerName(),
+			"totalAmount" => $payment->getTotalAmount(),
+			"subject" => $payment->getSubject(),
+			"debtors" => $payment->getDebtors()
+		)));
+	}
+
 	public function createPayment($idProject, $data)
 	{
 		$currentUser = parent::authenticateUser();
@@ -352,7 +375,8 @@ URIDispatcher::getInstance()
 	->map("GET", "/project/$1/debt", array($projectRest, "getDebts"))										//checked
 	->map("GET", "/project/$1/member", array($projectRest, "getMembers"))									//checked
 	->map("POST", "/project/$1/member", array($projectRest, "addMember"))									//checked
-	->map("GET", "/project/$1", array($projectRest, "getProject"));
+	->map("GET", "/project/$1", array($projectRest, "getProject"))
+	->map("GET", "/project/$1/payment/$2", array($projectRest, "getPayment"));
 
 
 
@@ -389,7 +413,7 @@ URIDispatcher::getInstance()
 		// Almacena la transacción en el arreglo de resultados en lugar de imprimirla
 		$transactions[] = [
 			"debtorName" => $users[$mxDebit],
-			"amount" => $min,
+			"amount" => number_format($min, 2, ".", ""),
 			"receiverName" => $users[$mxCredit]
 		];
 	

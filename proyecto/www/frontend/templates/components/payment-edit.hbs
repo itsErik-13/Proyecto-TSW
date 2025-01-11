@@ -1,0 +1,136 @@
+<div class="flex flex-col justify-center items-center h-full w-full text-white">
+  <div class="bg-[#323231] rounded-lg p-8 shadow-lg max-w-sm w-full">
+    <h2 class="text-3xl font-bold text-white text-center mb-6">{{i18n
+        "Edit payment"
+      }}</h2>
+    <input
+      type="hidden"
+      name="idProject"
+      id="idProject"
+      value="{{selectedProject.idProject}}"
+    />
+    <div class="relative flex items-center mb-4">
+      <input
+        type="text"
+        placeholder="{{i18n 'Subject'}}"
+        name="subject"
+        value="{{selectedPayment.subject}}"
+        id="subject"
+        class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+        required
+      />
+      <div class="absolute right-4 flex items-centerpointer-events-none">
+        <i class="fa-solid fa-money-bill-1-wave text-gray-300"></i>
+      </div>
+    </div>
+    <p class="text-red-600 inlinse">{{#i18n}}{{paymentErrors.debt}}{{/i18n}}</p>
+
+    <div class="relative flex items-center mb-4">
+      <select
+        id="payerName"
+        name="payerName"
+        id="payerName"
+        class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+      >
+        <option selected value="{{selectedPayment.payerName}}" name="{{selectedPayment.payerName}}">
+          {{selectedPayment.payerName}}
+        </option>
+        {{#each selectedProject.members}}
+          {{#if_neq this.username ../selectedPayment.payerName}}
+            <option
+              value="{{this.username}}"
+              name="{{this.username}}"
+            >{{this.username}}</option>
+          {{/if_neq}}
+        {{/each}}
+      </select>
+      <div class="absolute right-4 flex items-centerpointer-events-none">
+        <i class="fa-solid fa-user text-gray-300"></i>
+      </div>
+    </div>
+
+    <div class="relative flex items-center mb-4">
+      <input
+        type="text"
+        placeholder="{{i18n 'Amount'}}"
+        name="totalAmount"
+        value="{{selectedPayment.totalAmount}}"
+        id="totalAmount"
+        class="px-4 py-3 bg-[#323231] w-full text-sm border outline-[#edb705] rounded transition-all"
+        required
+      />
+      <div class="absolute right-4 flex items-center pointer-events-none">
+        <i class="fa-solid fa-dollar-sign text-gray-300"></i>
+      </div>
+    </div>
+    <p class="text-red-600 inline">{{#i18n
+      }}{{paymentErrors.totalAmount}}{{/i18n}}</p>
+    <div>
+      <button
+        id="dropdownMembersPaymentButton"
+        data-dropdown-toggle="dropdownMembersPayment"
+        class="text-white bg-yellow-400 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-[#323231] font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+        type="button"
+      >
+        {{i18n "Usuarios"}}
+        <svg
+          class="w-2.5 h-2.5 ms-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 4 4 4-4"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Dropdown menu -->
+    <div
+      id="dropdownMembersPayment"
+      class="z-10 hidden w-48 bg-[#414140] rounded-lg shadow overflow-y-auto"
+    >
+      <ul class="p-3 space-y-1 text-sm text-gray-700">
+        {{#each selectedProject.members}}
+          <li>
+            <div class="flex items-center p-2 rounded hover:bg-gray-600">
+              <input
+                id="checkbox-item-1"
+                type="checkbox"
+                name="selectedUsers[]"
+                value="{{this.username}}"
+                {{#contains this.username ../selectedPayment.debtors}}checked{{/contains}}
+                class="w-4 h-4 text-blue-600 rounded focus:ring-blue-600 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500"
+              />
+              <label
+                for="checkbox-item-1"
+                class="w-full ms-2 text-sm font-medium rounded text-gray-300"
+              >{{this.username}}</label>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="flex items-center justify-between mt-2">
+      <button
+        type="submit"
+        name="submit"
+        id="editPayment"
+        class="text-white bg-[#edb705] hover:bg-[#ab8403] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      >
+        <i class="fa-solid fa-money-bill-1-wave"></i>
+      </button>
+      <a
+        href="#view-project?idProject={{selectedProject.idProject}}"
+        class="text-yellow-400 hover:text-yellow-500 text-sm underline"
+      >{{i18n "Cancel"}}</a>
+    </div>
+  </div>
+</div>

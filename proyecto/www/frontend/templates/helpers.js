@@ -11,3 +11,11 @@ Handlebars.registerHelper('if_neq', function(a, b, opts) {
   else
     return opts.inverse(this);
 });
+
+Handlebars.registerHelper('contains', function(value, array, options) {
+  if (Array.isArray(array) && array.includes(value)) {
+    return options.fn(this); // Renderiza el bloque si se encuentra el valor
+  } else {
+    return options.inverse(this); // Renderiza el bloque {{else}} si no se encuentra
+  }
+});
