@@ -5,24 +5,15 @@ class MainComponent extends Fronty.RouterComponent {
     // models instantiation
     // we can instantiate models at any place
     this.userModel = new UserModel();
-    this.postsModel = new PostsModel();
     this.userService = new UserService();
     this.projectsModel = new ProjectsModel();
     this.paymentsModel = new PaymentsModel();
     
     
     super.setRouterConfig({
-      posts: {
-        component: new PostsComponent(this.postsModel, this.userModel, this),
-        title: 'Posts'
-      },
       projects: {
         component: new ProjectsComponent(this.projectsModel, this.userModel, this),
         title: 'Projects'
-      },
-      'view-post': {
-        component: new PostViewComponent(this.postsModel, this.userModel, this),
-        title: 'Post'
       },
       'view-project': {
         component: new ProjectViewComponent(this.projectsModel, this.userModel, this),
@@ -31,14 +22,6 @@ class MainComponent extends Fronty.RouterComponent {
       'view-members': {
         component: new MemberViewComponent(this.projectsModel, this.userModel, this),
         title: 'Member'
-      },
-      'edit-post': {
-        component: new PostEditComponent(this.postsModel, this.userModel, this),
-        title: 'Edit Post'
-      },
-      'add-post': {
-        component: new PostAddComponent(this.postsModel, this.userModel, this),
-        title: 'Add Post'
       },
       'add-payment': {
         component: new PaymentAddComponent(this.projectsModel, this.userModel, this),

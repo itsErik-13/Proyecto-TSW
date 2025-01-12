@@ -9,33 +9,16 @@ class ProjectViewComponent extends Fronty.ModelComponent {
     this.router = router;
 
     this.projectsService = new ProjectsService();
-
-
-    // this.addEventListener('click', '#savecommentbutton', () => {
-    //   var selectedId = this.router.getRouteQueryParam('id');
-    //   this.postsService.createComment(selectedId, {
-    //       content: $('#commentcontent').val()
-    //     })
-    //     .then(() => {
-    //       $('#commentcontent').val('');
-    //       this.loadPost(selectedId);
-    //     })
-    //     .fail((xhr, errorThrown, statusText) => {
-    //       if (xhr.status == 400) {
-    //         this.postsModel.set(() => {
-    //           this.postsModel.commentErrors = xhr.responseJSON;
-    //         });
-    //       } else {
-    //         alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
-    //       }
-    //     });
-    // });
   }
 
   onStart() {
+    
     var selectedId = this.router.getRouteQueryParam('idProject');
+    
+    this.projectsModel.paymentErrors = null;
     this.loadProject(selectedId);
     this.getPayments(selectedId);
+    
   }
 
   loadProject(projectId) {

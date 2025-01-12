@@ -26,6 +26,13 @@ class UserRest extends BaseRest {
 		try {
 			$user->checkIsValidForRegister();
 
+			if ($this->userMapper->userNameExists($data->username)) {
+				throw new ValidationException(array("userName" => "Username already exists"), "User is not valid");
+			}
+			if ($this->userMapper->getUserByEmail($data->email) != NULL) {
+				throw new ValidationException(array("email" => "Email already exists"), "User is not valid");
+			}
+
 			$this->userMapper->save($user);
 
 			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');

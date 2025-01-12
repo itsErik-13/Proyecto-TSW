@@ -12,6 +12,7 @@ class MemberViewComponent extends Fronty.ModelComponent {
 
   onStart() {
     var selectedId = this.router.getRouteQueryParam("idProject");
+    this.projectsModel.memberErrors = null;
     this.setMembers(selectedId);
   }
 

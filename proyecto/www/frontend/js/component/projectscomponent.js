@@ -29,6 +29,8 @@ class ProjectsComponent extends Fronty.ModelComponent {
 
   onStart() {
     this.updateProjects();
+    this.projectsModel.payments = [];
+    this.projectsModel.selectedProject = null;
   }
 
   updateProjects() {

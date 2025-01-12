@@ -35,16 +35,8 @@ Promise.all([
       Handlebars.templates.login = Handlebars.compile(source)),
     loadTextFile('templates/components/register.hbs').then((source) =>
       Handlebars.templates.register = Handlebars.compile(source)),
-    loadTextFile('templates/components/posts-table.hbs').then((source) =>
-      Handlebars.templates.poststable = Handlebars.compile(source)),
-    loadTextFile('templates/components/post-edit.hbs').then((source) =>
-      Handlebars.templates.postedit = Handlebars.compile(source)),
     loadTextFile('templates/components/payment-row.hbs').then((source) =>
       Handlebars.templates.paymentrow = Handlebars.compile(source)),
-    loadTextFile('templates/components/post-view.hbs').then((source) =>
-      Handlebars.templates.postview = Handlebars.compile(source)),
-    loadTextFile('templates/components/post-row.hbs').then((source) =>
-      Handlebars.templates.postrow = Handlebars.compile(source)),
     loadTextFile('templates/components/projectstable.hbs').then((source) =>
       Handlebars.templates.projectstable = Handlebars.compile(source)),
     loadTextFile('templates/components/project-row.hbs').then((source) =>

@@ -322,21 +322,18 @@ class ProjectRest extends BaseRest
 		}
 		if($this->userMapper->getUserByEmail($data->email) == NULL){
 			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request');
-			echo ("User with email " . $data->email . " not found");
+			echo ("User not found");
 			return;
 			
 		}
 		if ($this->projectMapper->canAddMember($project, $this->userMapper->getUserByEmail($data->email)) == false) {
 			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request');
-			echo ("Member is already in the project");
+			echo ("The user is already on the project");
 		}
 		else if ($this->userMapper->getUserByEmail($data->email) != NULL) {
 			$this->projectMapper->addMember($project, $this->userMapper->getUserByEmail($data->email));
 			header($_SERVER['SERVER_PROTOCOL'] . ' 200 Ok'); // O 201 Created?
 			echo("User added to the project");
-		} else {
-			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad request');
-			echo ("User with email " . $data->email . " not found");
 		}
 	}
 

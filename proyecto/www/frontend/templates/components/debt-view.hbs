@@ -20,20 +20,24 @@
     <!-- Lista de pagos -->
     <div
         class="space-y-4 overflow-y-auto max-h-[320px] pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full">
-        {{#each debts}}
-            <div class="flex flex-col justify-between bg-[#3d3d3d] p-4 rounded text-white space-y-2">
-          <!-- Información de Usuario y Beneficiario -->
-          <div class="relative flex justify-between items-center text-sm">
-            <p>{{debtorName}}</p>
-            <i class="fa-solid fa-arrow-right text-white absolute left-1/2 transform -translate-x-1/2"></i>
-            <p>{{receiverName}}</p>
-          </div>
-          <!-- Información de Pago Principal -->
-          <div class="flex justify-center items-center">
-            <b>${{amount}}</b>
-          </div>
-        </div>
-        {{/each}}
+        {{#if debts}}
+            {{#each debts}}
+                <div class="flex flex-col justify-between bg-[#3d3d3d] p-4 rounded text-white space-y-2">
+            <!-- Información de Usuario y Beneficiario -->
+            <div class="relative flex justify-between items-center text-sm">
+                <p>{{debtorName}}</p>
+                <i class="fa-solid fa-arrow-right text-white absolute left-1/2 transform -translate-x-1/2"></i>
+                <p>{{receiverName}}</p>
+            </div>
+            <!-- Información de Pago Principal -->
+            <div class="flex justify-center items-center">
+                <b>${{amount}}</b>
+            </div>
+            </div>
+            {{/each}}
+        {{else}}
+            <p class="text-white text-lg font-bold">{{i18n "There are no debts"}}</p>
+        {{/if}}
     </div>
 </div>
 </div>
